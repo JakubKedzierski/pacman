@@ -1,5 +1,5 @@
 package pacman;
 
-public abstract class Ghost implements Sprite{
+public abstract class Ghost extends Sprite{
 
 }

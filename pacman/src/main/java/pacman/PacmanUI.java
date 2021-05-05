@@ -3,6 +3,8 @@ package pacman;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,6 +12,10 @@ import javax.swing.JPanel;
 public class PacmanUI extends JFrame {
 	Pacman game = null;
 	BoardPanel boardPanel = null;
+	
+	private Timer timer;
+	private final int INITIAL_DELAY = 500;
+	private final int PERIOD_INTERVAL = 500;
 
 	public PacmanUI(Pacman pacman) {
 		super("Pacman");
@@ -22,16 +28,21 @@ public class PacmanUI extends JFrame {
 		this.getContentPane().setLocation(100, 100);
 		this.getContentPane().add(boardPanel);
 		
-		boardPanel.setLocation(20, 100);
+		timer = new Timer();
+		timer.scheduleAtFixedRate(new gameLoop(), INITIAL_DELAY, PERIOD_INTERVAL);
 		
 		setVisible(true);
 	}
 
-	public void drawBoard() {
-		BoardField board[][] = game.getBoard();
+	
+	private class gameLoop extends TimerTask {
 
-
+		@Override
+		public void run() {
+			boardPanel.repaint();
+		}
 	}
+
 
 	public static void main(String[] args) {
 		Pacman pacman = new Pacman();
