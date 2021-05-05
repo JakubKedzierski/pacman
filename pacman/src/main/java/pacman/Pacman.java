@@ -19,8 +19,8 @@ public class Pacman {
 	public Pacman() {
 
 		board = new BoardField[boardWidth][boardHeigth];
-		for (int i = 0; i < 20; i++) {
-			for (int j = 0; j < 20; j++) {
+		for (int i = 0; i < boardWidth; i++) {
+			for (int j = 0; j < boardHeigth; j++) {
 				if (i == 0) {
 					board[i][j] = BoardField.Obstacle;
 				} else if (i < 19) {
