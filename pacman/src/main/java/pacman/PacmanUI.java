@@ -36,6 +36,7 @@ public class PacmanUI extends JFrame {
 	public static void main(String[] args) {
 		Pacman pacman = new Pacman();
 		PacmanUI gameUI = new PacmanUI(pacman);
+		pacman.play();
 	}
 
 }

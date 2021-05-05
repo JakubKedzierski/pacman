@@ -8,5 +8,7 @@ public enum BoardField {
 	Pinky,
 	Inky,
 	Clyde,
+	Ball,
+	ExtraBall,
 	Food;
 }

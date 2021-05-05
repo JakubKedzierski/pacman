@@ -7,4 +7,9 @@ public class Clyde extends Ghost{
 		
 	}
 
+	public void move() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
