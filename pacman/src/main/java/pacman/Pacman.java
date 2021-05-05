@@ -40,7 +40,7 @@ public class Pacman {
 
 		sprites = new ArrayList<Sprite>();
 		sprites.add(new Player(10,10,board));
-		sprites.add(new Pinky());
+		sprites.add(new Pinky(4,7,board));
 
 	}
 	
