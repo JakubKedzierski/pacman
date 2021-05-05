@@ -43,33 +43,6 @@ public class Pacman {
 		
 	}
 
-	public void printDebugBoard() {
-		for (int i = 0; i < boardWidth; i++) {
-			for (int j = 0; j <  boardHeigth; j++) {
-				if (board[i][j] == BoardField.EmptyField) {
-					System.out.print("0 ");
-				}
-				if (board[i][j] == BoardField.Obstacle) {
-					System.out.print("1 ");
-				}
-				if (board[i][j] == BoardField.Player) {
-					System.out.print("2 ");
-				}
-				if (board[i][j] == BoardField.Pinky) {
-					System.out.print("3 ");
-				}
-				if (board[i][j] == BoardField.Clyde) {
-					System.out.print("4 ");
-				}
-			}
-			System.out.println("");
-		}
 
-	}
-	
-	public static void main(String[] args) {
-		Pacman pacman = new Pacman();
-		pacman.printDebugBoard();
-	}
 
 }
