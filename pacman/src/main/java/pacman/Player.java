@@ -14,21 +14,10 @@ public class Player extends Sprite {
 		this.position_y = position_y;
 	}
 
-	public void run() {
-		timer = new Timer();
-		timer.scheduleAtFixedRate(new gameLoop(), INITIAL_DELAY, PERIOD_INTERVAL);
-	}
-
-	
-	private class gameLoop extends TimerTask {
-
-		@Override
-		public void run() {
-			board[position_x][position_y] = BoardField.EmptyField;
-			position_y = position_y +1;
-			board[position_x][position_y] = BoardField.Player;
-			
-		}
+	public void move() {
+		board[position_x][position_y] = BoardField.EmptyField;
+		position_y = position_y +1;
+		board[position_x][position_y] = BoardField.Player;
 	}
 
 

@@ -1,6 +1,6 @@
 package pacman;
 
-public class Clyde extends Ghost{
+public class Clyde extends Sprite implements Ghost{
 
 	public void run() {
 		// TODO Auto-generated method stub

@@ -1,6 +1,6 @@
 package pacman;
 
-public class Inky extends Ghost {
+public class Inky extends Sprite implements Ghost {
 
 	public void run() {
 		// TODO Auto-generated method stub
