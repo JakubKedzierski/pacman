@@ -1,5 +1,6 @@
 package pacman;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -13,7 +14,7 @@ public class Player extends Sprite {
 	@Setter 
 	private Move direction = Move.Stop;
 
-	public Player(int position_x, int position_y, BoardField[][] board) {
+	public Player(int position_x, int position_y, ArrayList<BoardField>[][]  board) {
 		this.board = board;
 		this.position_x = position_x;
 		this.position_y = position_y;
@@ -21,9 +22,14 @@ public class Player extends Sprite {
 
 	public void move() {
 		if (checkMove(direction)) {
-			board[position_x][position_y] = BoardField.EmptyField;
+			board[position_x][position_y].remove(BoardField.Player);
+			board[position_x][position_y].add(BoardField.EmptyField);
 			position_y = position_y + 1;
-			board[position_x][position_y] = BoardField.Player;
+			
+			if(board[position_x][position_y].contains(BoardField.EmptyField)) 
+				board[position_x][position_y].remove(BoardField.EmptyField);
+			
+			board[position_x][position_y].add(BoardField.Player);
 		}
 	}
 

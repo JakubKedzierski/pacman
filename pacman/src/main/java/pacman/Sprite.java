@@ -1,5 +1,6 @@
 package pacman;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -9,7 +10,7 @@ public abstract class Sprite implements Runnable {
 	protected Timer timer;
 	protected final int INITIAL_DELAY = 500;
 	protected final int PERIOD_INTERVAL = 500;
-	protected volatile BoardField[][] board;
+	protected volatile ArrayList<BoardField>[][]  board;
 	protected int position_x = 0;
 	protected int position_y = 0;
 	protected int boardWidth = 20;
@@ -32,7 +33,7 @@ public abstract class Sprite implements Runnable {
 		switch (move) {
 		case Down:
 			if (position_x - 1 > 0) {
-				if (board[position_x - 1][position_y] != BoardField.Obstacle) {
+				if (!board[position_x - 1][position_y].contains(BoardField.Obstacle)) {
 					return true;
 				}
 			}
@@ -40,7 +41,7 @@ public abstract class Sprite implements Runnable {
 
 		case Up:
 			if (position_x + 1 < boardHeight) {
-				if (board[position_x + 1][position_y] != BoardField.Obstacle) {
+				if (!board[position_x + 1][position_y].contains(BoardField.Obstacle)) {
 					return true;
 				}
 			}
@@ -48,7 +49,7 @@ public abstract class Sprite implements Runnable {
 
 		case Left:
 			if (position_y - 1 > 0) {
-				if (board[position_x][position_y - 1] != BoardField.Obstacle) {
+				if (!board[position_x][position_y - 1].contains(BoardField.Obstacle)) {
 					return true;
 				}
 			}
@@ -56,7 +57,7 @@ public abstract class Sprite implements Runnable {
 
 		case Right:
 			if (position_y + 1 < boardWidth) {
-				if (board[position_x][position_y + 1] != BoardField.Obstacle) {
+				if (!board[position_x][position_y + 1].contains( BoardField.Obstacle)) {
 					return true;
 				}
 			}

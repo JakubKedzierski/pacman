@@ -7,7 +7,7 @@ import lombok.Getter;
 
 public class Pacman {
 	@Getter
-	private volatile BoardField[][] board = null;
+	private volatile ArrayList<BoardField>[][] board = null;
 	@Getter
 	private int boardWidth = 20;
 	@Getter
@@ -20,25 +20,30 @@ public class Pacman {
 
 	public Pacman() {
 
-		board = new BoardField[boardWidth][boardHeigth];
+		board = new ArrayList[boardWidth][boardHeigth];
+		for(int i=0;i<board.length;i++) {
+			for(int j=0;j<board[i].length;j++) {
+				board[i][j] =  new ArrayList<BoardField>();
+			}
+		}
 		for (int i = 0; i < boardWidth; i++) {
 			for (int j = 0; j < boardHeigth; j++) {
 				if (i == 0) {
-					board[i][j] = BoardField.Obstacle;
+					board[i][j].add(BoardField.Obstacle);
 				} else if (i < 19) {
 					if (j == 0 || j == 19)
-						board[i][j] = BoardField.Obstacle;
+						board[i][j].add(BoardField.Obstacle);
 					else
-						board[i][j] = BoardField.EmptyField;
+						board[i][j].add(BoardField.EmptyField);
 				} else {
-					board[i][j] = BoardField.Obstacle;
+					board[i][j].add(BoardField.Obstacle);
 				}
 			}
 		}
 
-		board[10][10] = BoardField.Player;
-		board[4][7] = BoardField.Pinky;
-		board[4][13] = BoardField.Clyde;
+		board[10][10].add(BoardField.Player);
+		board[4][7].add(BoardField.Pinky);
+		board[4][13].add(BoardField.Clyde);
 
 		sprites = new ArrayList<Sprite>();
 		this.player = new Player(10,10,board);

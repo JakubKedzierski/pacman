@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -90,11 +91,11 @@ public class PacmanUI extends JFrame implements KeyListener {
 class BoardPanel extends JPanel {
 	private static final int RECT_WIDTH = 10;
 	private static final int RECT_HEIGHT = RECT_WIDTH;
-	private BoardField[][] board;
+	private ArrayList<BoardField>[][] board;
 	private int boardWidth;
 	private int boardHeight;
 
-	public BoardPanel(BoardField[][] board, int boardWidth, int boardHeight) {
+	public BoardPanel(ArrayList<BoardField>[][]  board, int boardWidth, int boardHeight) {
 		this.board = board;
 		this.boardWidth = boardWidth;
 		this.boardHeight = boardHeight;
@@ -107,23 +108,23 @@ class BoardPanel extends JPanel {
 
 		for (int i = 0; i < boardWidth; i++) {
 			for (int j = 0; j < boardHeight; j++) {
-				if (board[i][j] == BoardField.EmptyField) {
+				if (board[i][j].contains(BoardField.EmptyField)) {
 					g.setColor(Color.WHITE);
 					g.fillRect(j * 20 + offset, i * 20 + offset, RECT_WIDTH, RECT_HEIGHT);
 				}
-				if (board[i][j] == BoardField.Obstacle) {
+				if (board[i][j].contains(BoardField.Obstacle)) {
 					g.setColor(Color.RED);
 					g.fillRect(j * 20 + offset, i * 20 + offset, RECT_WIDTH, RECT_HEIGHT);
 				}
-				if (board[i][j] == BoardField.Player) {
+				if (board[i][j].contains(BoardField.Player)) {
 					g.setColor(Color.BLACK);
 					g.fillRect(j * 20 + offset, i * 20 + offset, RECT_WIDTH, RECT_HEIGHT);
 				}
-				if (board[i][j] == BoardField.Pinky) {
+				if (board[i][j].contains(BoardField.Pinky)) {
 					g.setColor(Color.GREEN);
 					g.fillRect(j * 20 + offset, i * 20 + offset, RECT_WIDTH, RECT_HEIGHT);
 				}
-				if (board[i][j] == BoardField.Clyde) {
+				if (board[i][j].contains(BoardField.Clyde)) {
 					g.setColor(Color.PINK);
 					g.fillRect(j * 20 + offset, i * 20 + offset, RECT_WIDTH, RECT_HEIGHT);
 				}
