@@ -3,6 +3,7 @@ package pacman;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Label;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -17,8 +18,8 @@ public class PacmanUI extends JFrame implements KeyListener {
 	BoardPanel boardPanel = null;
 
 	private Timer timer;
-	private final int INITIAL_DELAY = 500;
-	private final int PERIOD_INTERVAL = 500;
+	private final int INITIAL_DELAY = 300;
+	private final int PERIOD_INTERVAL = 300;
 
 	public PacmanUI(Pacman pacman) {
 		super("Pacman");

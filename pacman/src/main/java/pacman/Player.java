@@ -21,16 +21,7 @@ public class Player extends Sprite {
 	}
 
 	public void move() {
-		if (checkMove(direction)) {
-			board[position_x][position_y].remove(BoardField.Player);
-			board[position_x][position_y].add(BoardField.EmptyField);
-			position_y = position_y + 1;
-			
-			if(board[position_x][position_y].contains(BoardField.EmptyField)) 
-				board[position_x][position_y].remove(BoardField.EmptyField);
-			
-			board[position_x][position_y].add(BoardField.Player);
-		}
+		move(direction, BoardField.Player);
 	}
 
 }

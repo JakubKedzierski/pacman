@@ -40,6 +40,16 @@ public class Pacman {
 				}
 			}
 		}
+		
+		for(int i=2;i<9;i++) {
+			board[6][i].remove(BoardField.EmptyField);
+			board[6][i].add(BoardField.Obstacle);
+		}
+		
+		for(int i=2;i<9;i++) {
+			board[8][i].remove(BoardField.EmptyField);
+			board[8][i].add(BoardField.Obstacle);
+		}
 
 		board[10][10].add(BoardField.Player);
 		board[4][7].add(BoardField.Pinky);
