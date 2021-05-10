@@ -3,9 +3,15 @@ package pacman;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Player extends Sprite {
 
-	int points = 0;
+	@Getter
+	private int points = 0;
+	@Setter 
+	private Move direction = Move.Stop;
 
 	public Player(int position_x, int position_y, BoardField[][] board) {
 		this.board = board;
@@ -14,7 +20,7 @@ public class Player extends Sprite {
 	}
 
 	public void move() {
-		if (checkMove(Move.Right)) {
+		if (checkMove(direction)) {
 			board[position_x][position_y] = BoardField.EmptyField;
 			position_y = position_y + 1;
 			board[position_x][position_y] = BoardField.Player;

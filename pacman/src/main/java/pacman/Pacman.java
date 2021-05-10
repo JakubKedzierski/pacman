@@ -14,6 +14,8 @@ public class Pacman {
 	private int boardHeigth = 20;
 	@Getter
 	private ArrayList<Sprite> sprites = null;
+	@Getter
+	private Player player = null;
 
 
 	public Pacman() {
@@ -39,7 +41,8 @@ public class Pacman {
 		board[4][13] = BoardField.Clyde;
 
 		sprites = new ArrayList<Sprite>();
-		sprites.add(new Player(10,10,board));
+		this.player = new Player(10,10,board);
+		sprites.add(this.player);
 		sprites.add(new Pinky(4,7,board));
 
 	}
