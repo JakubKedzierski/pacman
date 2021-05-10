@@ -1,9 +1,7 @@
 package pacman;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Label;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -12,6 +10,8 @@ import java.util.TimerTask;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class PacmanUI extends JFrame implements KeyListener {
 	Pacman game = null;
@@ -32,10 +32,19 @@ public class PacmanUI extends JFrame implements KeyListener {
 		boardPanel = new BoardPanel(game.getBoard(), pacman.getBoardWidth(), pacman.getBoardHeigth());
 		this.getContentPane().setLocation(100, 100);
 		this.getContentPane().add(boardPanel);
+		boardPanel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Ruch mo\u017Cesz wykona\u0107\r\n za pomoc\u0105 strza\u0142ek");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(496, 74, 257, 58);
+		boardPanel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Spacja powoduje zatrzymanie ruchu");
+		lblNewLabel_1.setBounds(521, 127, 217, 36);
+		boardPanel.add(lblNewLabel_1);
 
 		timer = new Timer();
 		timer.scheduleAtFixedRate(new gameLoop(), INITIAL_DELAY, PERIOD_INTERVAL);
-
 		setVisible(true);
 	}
 
@@ -86,7 +95,6 @@ public class PacmanUI extends JFrame implements KeyListener {
 			break;
 		}
 	}
-
 }
 
 class BoardPanel extends JPanel {
