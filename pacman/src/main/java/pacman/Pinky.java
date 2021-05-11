@@ -1,6 +1,9 @@
 package pacman;
 
 import java.util.ArrayList;
+import java.util.Random;
+
+
 
 public class Pinky extends Sprite implements Ghost {
 	
@@ -13,16 +16,25 @@ public class Pinky extends Sprite implements Ghost {
 	
 	@Override
 	public void move() {
-		if (checkMove(Move.Right)) {
-			board[position_x][position_y].remove(BoardField.Pinky);
-			board[position_x][position_y].add(BoardField.EmptyField);
-			position_y = position_y + 1;
-			
-			if(board[position_x][position_y].contains(BoardField.EmptyField)) 
-				board[position_x][position_y].remove(BoardField.EmptyField);
-			
-			board[position_x][position_y].add(BoardField.Pinky);
+		Random rand = new Random();
+		int dir = rand.nextInt(4);
+		Move move = Move.Stop;
+		switch(dir) {
+		case 0:
+			move = Move.Down;
+			break;
+		case 1:
+			move = Move.Up;
+			break;
+		case 2:
+			move = Move.Left;
+			break;
+		case 3:
+			move = Move.Right;
+			break;
 		}
+		
+		move(move,BoardField.Pinky);
 	}
 
 }

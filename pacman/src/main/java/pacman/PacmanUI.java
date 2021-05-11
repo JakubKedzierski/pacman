@@ -137,6 +137,11 @@ class BoardPanel extends JPanel {
 					g.setColor(Color.PINK);
 					g.fillRect(j * 20 + offset, i * 20 + offset, RECT_WIDTH, RECT_HEIGHT);
 				}
+				
+				if (board[i][j].contains(BoardField.Food)) {
+					g.setColor(Color.PINK);
+					g.fillOval(j * 20 + offset, i * 20 + offset, RECT_WIDTH, RECT_HEIGHT);
+				}
 			}
 			System.out.println("");
 		}

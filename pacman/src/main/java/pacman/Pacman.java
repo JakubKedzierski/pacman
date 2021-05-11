@@ -45,6 +45,10 @@ public class Pacman {
 			board[6][i].remove(BoardField.EmptyField);
 			board[6][i].add(BoardField.Obstacle);
 		}
+		for(int i=2;i<9;i++) {
+			board[7][i].remove(BoardField.EmptyField);
+			board[7][i].add(BoardField.Food);
+		}
 		
 		for(int i=2;i<9;i++) {
 			board[8][i].remove(BoardField.EmptyField);
@@ -59,6 +63,7 @@ public class Pacman {
 		this.player = new Player(10,10,board);
 		sprites.add(this.player);
 		sprites.add(new Pinky(4,7,board));
+		sprites.add(new Clyde(4,13,board));
 
 	}
 	
