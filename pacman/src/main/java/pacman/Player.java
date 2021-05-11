@@ -22,6 +22,10 @@ public class Player extends Sprite {
 
 	public void move() {
 		move(direction, BoardField.Player);
+		if(board[position_x][position_y].contains(BoardField.Food)) {
+			points += 10;
+			board[position_x][position_y].remove(BoardField.Food);
+		}
 	}
 
 }
