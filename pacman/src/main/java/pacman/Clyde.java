@@ -10,6 +10,7 @@ public class Clyde extends Sprite implements Ghost {
 		this.position_x = position_x;
 		this.position_y = position_y;
 	}
+
 	
 	public void move() {
 		Random rand = new Random();

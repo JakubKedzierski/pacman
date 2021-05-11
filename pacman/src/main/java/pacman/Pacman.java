@@ -46,8 +46,12 @@ public class Pacman {
 			board[6][i].add(BoardField.Obstacle);
 		}
 		for(int i=2;i<9;i++) {
-			board[7][i].remove(BoardField.EmptyField);
 			board[7][i].add(BoardField.Food);
+		}
+		
+		for(int i=1;i<19;i++) {
+			board[18][i].add(BoardField.Food);
+			board[17][i].add(BoardField.Food);
 		}
 		
 		for(int i=2;i<9;i++) {
