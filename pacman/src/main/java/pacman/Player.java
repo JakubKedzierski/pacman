@@ -13,6 +13,8 @@ public class Player extends Sprite {
 	int points = 0;
 	@Setter 
 	private Move direction = Move.Stop;
+        @Getter
+        int lives = 1;
         
 	public Player(int position_x, int position_y, ArrayList<BoardField>[][]  board) {
 		this.board = board;
@@ -30,7 +32,7 @@ public class Player extends Sprite {
                 boolean d = board[position_x][position_y].contains(BoardField.Pinky);
                 
                 if(a | b | c | d) {
-                    System.exit(0);
+                    lives--;
                 }
                 
 		if(board[position_x][position_y].contains(BoardField.Food)) {
