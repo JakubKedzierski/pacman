@@ -25,7 +25,7 @@ public class PacmanUI extends JFrame implements KeyListener {
 		super("Pacman");
 		this.game = pacman;
 		setTitle("Pacman");
-		setSize(800, 600);
+		setSize(1024, 720);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		addKeyListener(this);
@@ -42,6 +42,10 @@ public class PacmanUI extends JFrame implements KeyListener {
 		JLabel lblNewLabel_1 = new JLabel("Spacja powoduje zatrzymanie ruchu");
 		lblNewLabel_1.setBounds(521, 127, 217, 36);
 		boardPanel.add(lblNewLabel_1);
+                
+                JLabel lblpoints = new JLabel("Punkty: 0");
+		lblpoints.setBounds(521, 245, 217, 36);
+		boardPanel.add(lblpoints);
 
 		timer = new Timer();
 		timer.scheduleAtFixedRate(new gameLoop(), INITIAL_DELAY, PERIOD_INTERVAL);
