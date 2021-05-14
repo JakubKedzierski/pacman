@@ -25,6 +25,8 @@ public class PacmanUI extends JFrame implements KeyListener {
 	private final int INITIAL_DELAY = 10;
 	private final int PERIOD_INTERVAL = 10;
         private Ranking ranking = new Ranking();
+        
+        static boolean reset = true;
 
 	public PacmanUI(Pacman pacman) {
 		
@@ -75,17 +77,23 @@ public class PacmanUI extends JFrame implements KeyListener {
                         
                         if(game.player.lives < 1) {
                             
-                            ranking.addRankField("ja", game.player.points);
-                            ranking.saveFile();
+                            timer.cancel();
+                            timer.purge();
+                            
+                            GameOver gameOver = new GameOver();
+                            ranking.addRankField(gameOver.waitForName(), game.player.points);
+                            
+                            PacmanUI.reset = true;
                         }
 		}
 	}
 
 	public static void main(String[] args) {
-		Pacman pacman = new Pacman();
-		PacmanUI gameUI = new PacmanUI(pacman);
-		pacman.play();
-	}
+            
+            Pacman pacman = new Pacman();
+            PacmanUI gameUI = new PacmanUI(pacman);
+            pacman.play();
+        }
 
 	public void keyTyped(KeyEvent e) {
 		movePacman(e);
@@ -137,6 +145,10 @@ class BoardPanel extends JPanel {
 		this.boardWidth = boardWidth;
 		this.boardHeight = boardHeight;
 	}
+
+    BoardPanel() {
+        
+    }
 
 	@Override
 	protected void paintComponent(Graphics g) {
