@@ -43,9 +43,7 @@ public class Ranking {
         
         try {
             
-            fileObject.createNewFile();
-            
-            FileWriter writer = new FileWriter("Ranking.sav");
+            FileWriter writer = new FileWriter(fileObject, false);
             
             for(RankField rankfield : rankList) {
                 writer.write(rankfield.toString());
