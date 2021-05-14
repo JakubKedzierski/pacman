@@ -14,21 +14,26 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 public class PacmanUI extends JFrame implements KeyListener {
-	Pacman game = null;
+	
+        Pacman game = null;
 	BoardPanel boardPanel = null;
+        
+        JLabel lblpoints = null;
 
 	private Timer timer;
 	private final int INITIAL_DELAY = 10;
 	private final int PERIOD_INTERVAL = 10;
 
 	public PacmanUI(Pacman pacman) {
-		super("Pacman");
+		
+                super("Pacman");
 		this.game = pacman;
 		setTitle("Pacman");
 		setSize(1024, 720);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		addKeyListener(this);
+                
 		boardPanel = new BoardPanel(game.getBoard(), pacman.getBoardWidth(), pacman.getBoardHeigth());
 		this.getContentPane().setLocation(100, 100);
 		this.getContentPane().add(boardPanel);
@@ -36,14 +41,14 @@ public class PacmanUI extends JFrame implements KeyListener {
 		
 		JLabel lblNewLabel = new JLabel("Ruch mo\u017Cesz wykona\u0107\r\n za pomoc\u0105 strza\u0142ek");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(596, 74, 257, 58);
+		lblNewLabel.setBounds(596, 74, 357, 58);
 		boardPanel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Spacja powoduje zatrzymanie ruchu");
-		lblNewLabel_1.setBounds(621, 127, 217, 36);
+		lblNewLabel_1.setBounds(621, 127, 300, 36);
 		boardPanel.add(lblNewLabel_1);
                 
-                JLabel lblpoints = new JLabel("Punkty: 0");
+                lblpoints = new JLabel();
 		lblpoints.setBounds(641, 245, 217, 36);
 		boardPanel.add(lblpoints);
 
@@ -57,6 +62,7 @@ public class PacmanUI extends JFrame implements KeyListener {
 		@Override
 		public void run() {
 			boardPanel.repaint();
+                        lblpoints.setText("Punkty: " + String.valueOf(10));
 		}
 	}
 

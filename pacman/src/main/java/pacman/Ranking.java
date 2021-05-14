@@ -6,13 +6,21 @@ import java.io.File;
 import java.io.FileWriter;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Scanner;
+
 
 class RankField {
     
     public String playerName;
     public int points;
+    
+    RankField() {}
+    
+    RankField(String name, int points) {
+        
+        this.playerName = name;
+        this.points = points;
+    }
     
     public String toString() {
         
@@ -27,13 +35,7 @@ public class Ranking {
     
     public static void addRankField(String name, int points) {
         
-        RankField rankfield = new RankField();
-        rankfield.playerName = name;
-        rankfield.points = points;
-        
-        System.out.println("foefne");
-        
-        rankList.add(rankfield);
+        rankList.add(new RankField(name, points));
     }
     
     public static void saveFile() {
@@ -59,8 +61,24 @@ public class Ranking {
     
     public static void readFile() {
         
+        File fileObject = new File("Ranking.sav");
         rankList.clear();
         
+        try {
+            
+            Scanner scanner = new Scanner(fileObject);
+            
+            while (scanner.hasNextLine()) {
+                
+                RankField rankfield = new RankField();
+                
+                rankfield.playerName = scanner.next();
+                rankfield.points = scanner.nextInt();
+            }
+            scanner.close();
+        }
+        catch (IOException e) {
+            System.out.println("Błąd odczytu!");
+        }
     }
-    
 }
