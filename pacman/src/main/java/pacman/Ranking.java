@@ -59,6 +59,7 @@ public class Ranking {
     
     public static void readFile() {
         
+        rankList.clear();
         
     }
     

@@ -36,15 +36,15 @@ public class PacmanUI extends JFrame implements KeyListener {
 		
 		JLabel lblNewLabel = new JLabel("Ruch mo\u017Cesz wykona\u0107\r\n za pomoc\u0105 strza\u0142ek");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(496, 74, 257, 58);
+		lblNewLabel.setBounds(596, 74, 257, 58);
 		boardPanel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Spacja powoduje zatrzymanie ruchu");
-		lblNewLabel_1.setBounds(521, 127, 217, 36);
+		lblNewLabel_1.setBounds(621, 127, 217, 36);
 		boardPanel.add(lblNewLabel_1);
                 
                 JLabel lblpoints = new JLabel("Punkty: 0");
-		lblpoints.setBounds(521, 245, 217, 36);
+		lblpoints.setBounds(641, 245, 217, 36);
 		boardPanel.add(lblpoints);
 
 		timer = new Timer();
@@ -102,8 +102,11 @@ public class PacmanUI extends JFrame implements KeyListener {
 }
 
 class BoardPanel extends JPanel {
-	private static final int RECT_WIDTH = 10;
+	
+        private static final int RECT_WIDTH = 25;
 	private static final int RECT_HEIGHT = RECT_WIDTH;
+        private static final int RECT_OFFSET = 26;
+        
 	private ArrayList<BoardField>[][] board;
 	private int boardWidth;
 	private int boardHeight;
@@ -122,29 +125,29 @@ class BoardPanel extends JPanel {
 		for (int i = 0; i < boardWidth; i++) {
 			for (int j = 0; j < boardHeight; j++) {
 				if (board[i][j].contains(BoardField.EmptyField)) {
-					g.setColor(Color.WHITE);
-					g.fillRect(j * 20 + offset, i * 20 + offset, RECT_WIDTH, RECT_HEIGHT);
+					g.setColor(Color.DARK_GRAY);
+					g.fillRect(j * RECT_OFFSET + offset, i * RECT_OFFSET + offset, RECT_WIDTH, RECT_HEIGHT);
 				}
 				if (board[i][j].contains(BoardField.Obstacle)) {
-					g.setColor(Color.RED);
-					g.fillRect(j * 20 + offset, i * 20 + offset, RECT_WIDTH, RECT_HEIGHT);
+					g.setColor(Color.BLUE);
+					g.fillRect(j * RECT_OFFSET + offset, i * RECT_OFFSET + offset, RECT_WIDTH, RECT_HEIGHT);
 				}
 				if (board[i][j].contains(BoardField.Player)) {
-					g.setColor(Color.BLACK);
-					g.fillRect(j * 20 + offset, i * 20 + offset, RECT_WIDTH, RECT_HEIGHT);
+					g.setColor(Color.YELLOW);
+					g.fillRect(j * RECT_OFFSET + offset, i * RECT_OFFSET + offset, RECT_WIDTH, RECT_HEIGHT);
 				}
 				if (board[i][j].contains(BoardField.Pinky)) {
 					g.setColor(Color.GREEN);
-					g.fillRect(j * 20 + offset, i * 20 + offset, RECT_WIDTH, RECT_HEIGHT);
+					g.fillRect(j * RECT_OFFSET + offset, i * RECT_OFFSET + offset, RECT_WIDTH, RECT_HEIGHT);
 				}
 				if (board[i][j].contains(BoardField.Clyde)) {
 					g.setColor(Color.PINK);
-					g.fillRect(j * 20 + offset, i * 20 + offset, RECT_WIDTH, RECT_HEIGHT);
+					g.fillRect(j * RECT_OFFSET + offset, i * RECT_OFFSET + offset, RECT_WIDTH, RECT_HEIGHT);
 				}
 				
 				if (board[i][j].contains(BoardField.Food)) {
-					g.setColor(Color.PINK);
-					g.fillOval(j * 20 + offset, i * 20 + offset, RECT_WIDTH-2, RECT_HEIGHT-2);
+					g.setColor(Color.WHITE);
+					g.fillOval(j * RECT_OFFSET + offset, i * RECT_OFFSET + offset, RECT_WIDTH-5, RECT_HEIGHT-5);
 				}
 			}
 			System.out.println("");
