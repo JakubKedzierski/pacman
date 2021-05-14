@@ -62,7 +62,7 @@ public class PacmanUI extends JFrame implements KeyListener {
 		@Override
 		public void run() {
 			boardPanel.repaint();
-                        lblpoints.setText("Punkty: " + String.valueOf(10));
+                        lblpoints.setText("Punkty: " + String.valueOf(game.player.points));
 		}
 	}
 
