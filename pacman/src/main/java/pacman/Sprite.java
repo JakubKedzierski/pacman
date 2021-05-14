@@ -8,8 +8,8 @@ import lombok.Getter;
 
 public abstract class Sprite implements Runnable {
 	protected Timer timer;
-	protected final int INITIAL_DELAY = 300;
-	protected final int PERIOD_INTERVAL = 300;
+	protected final int INITIAL_DELAY = 150;
+	protected final int PERIOD_INTERVAL = 150;
 	protected volatile ArrayList<BoardField>[][] board;
 	protected int position_x = 0;
 	protected int position_y = 0;
