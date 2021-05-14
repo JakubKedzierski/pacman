@@ -18,8 +18,8 @@ public class PacmanUI extends JFrame implements KeyListener {
 	BoardPanel boardPanel = null;
 
 	private Timer timer;
-	private final int INITIAL_DELAY = 300;
-	private final int PERIOD_INTERVAL = 300;
+	private final int INITIAL_DELAY = 10;
+	private final int PERIOD_INTERVAL = 10;
 
 	public PacmanUI(Pacman pacman) {
 		super("Pacman");
