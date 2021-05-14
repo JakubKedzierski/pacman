@@ -19,10 +19,12 @@ public class PacmanUI extends JFrame implements KeyListener {
 	BoardPanel boardPanel = null;
         
         JLabel lblpoints = null;
+        JLabel lblranking = null;
 
 	private Timer timer;
 	private final int INITIAL_DELAY = 10;
 	private final int PERIOD_INTERVAL = 10;
+        private Ranking ranking = new Ranking();
 
 	public PacmanUI(Pacman pacman) {
 		
@@ -51,7 +53,14 @@ public class PacmanUI extends JFrame implements KeyListener {
                 lblpoints = new JLabel();
 		lblpoints.setBounds(641, 245, 217, 36);
 		boardPanel.add(lblpoints);
+                
+                lblranking = new JLabel();
+		lblranking.setBounds(641, 345, 300, 300);
+		boardPanel.add(lblranking);
 
+                ranking.init();
+                lblranking.setText(ranking.prepareRanking());
+                
 		timer = new Timer();
 		timer.scheduleAtFixedRate(new gameLoop(), INITIAL_DELAY, PERIOD_INTERVAL);
 		setVisible(true);
@@ -63,6 +72,12 @@ public class PacmanUI extends JFrame implements KeyListener {
 		public void run() {
 			boardPanel.repaint();
                         lblpoints.setText("Punkty: " + String.valueOf(game.player.points));
+                        
+                        if(game.player.lives < 1) {
+                            
+                            ranking.addRankField("ja", game.player.points);
+                            ranking.saveFile();
+                        }
 		}
 	}
 

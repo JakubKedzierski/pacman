@@ -31,14 +31,14 @@ class RankField {
 public class Ranking {
     
     @Getter
-    private static ArrayList<RankField> rankList = new ArrayList<RankField>();
+    private final ArrayList<RankField> rankList = new ArrayList<RankField>();
     
-    public static void addRankField(String name, int points) {
+    public void addRankField(String name, int points) {
         
         rankList.add(new RankField(name, points));
     }
     
-    public static void saveFile() {
+    public void saveFile() {
         
         File fileObject = new File("Ranking.sav");
 
@@ -59,7 +59,7 @@ public class Ranking {
         }
     }
     
-    public static void readFile() {
+    public void init() {
         
         File fileObject = new File("Ranking.sav");
         rankList.clear();
@@ -68,12 +68,14 @@ public class Ranking {
             
             Scanner scanner = new Scanner(fileObject);
             
-            while (scanner.hasNextLine()) {
+            while (scanner.hasNext()) {
                 
                 RankField rankfield = new RankField();
                 
                 rankfield.playerName = scanner.next();
                 rankfield.points = scanner.nextInt();
+                
+                rankList.add(rankfield);
             }
             scanner.close();
         }
@@ -81,4 +83,19 @@ public class Ranking {
             System.out.println("Błąd odczytu!");
         }
     }
+    
+    public String prepareRanking() {
+        
+        String text = "<html>Ranking:<br/>";
+        
+        for(int i = 0; i < rankList.size() && i < 10; i++) {
+            
+            text += String.valueOf(i) + ". ";
+            text += rankList.get(i).toString();
+            text += "<br/>";
+        }
+        text += "</html>";
+        
+        return text;
+    } 
 }
