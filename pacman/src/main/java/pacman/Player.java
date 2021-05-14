@@ -23,6 +23,16 @@ public class Player extends Sprite {
 	public void move() {
             
 		move(direction, BoardField.Player);
+                
+                boolean a = board[position_x][position_y].contains(BoardField.Blinky);
+                boolean b = board[position_x][position_y].contains(BoardField.Clyde);
+                boolean c = board[position_x][position_y].contains(BoardField.Inky);
+                boolean d = board[position_x][position_y].contains(BoardField.Pinky);
+                
+                if(a | b | c | d) {
+                    System.exit(0);
+                }
+                
 		if(board[position_x][position_y].contains(BoardField.Food)) {
 			points += 10;
 			board[position_x][position_y].remove(BoardField.Food);
