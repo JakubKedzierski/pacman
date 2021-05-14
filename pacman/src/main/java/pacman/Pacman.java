@@ -15,7 +15,7 @@ public class Pacman {
 	@Getter
 	private ArrayList<Sprite> sprites = null;
 	@Getter
-	private Player player = null;
+	Player player = null;
 
 
 	public Pacman() {
