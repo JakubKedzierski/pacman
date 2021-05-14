@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/*------------------------------------------------------------------------------------*/
 
 class RankField {
     
@@ -28,6 +29,8 @@ class RankField {
     }
 }
 
+/*------------------------------------------------------------------------------------*/
+
 public class Ranking {
     
     @Getter
@@ -36,7 +39,10 @@ public class Ranking {
     public void addRankField(String name, int points) {
         
         rankList.add(new RankField(name, points));
+        saveFile();
     }
+    
+    /*------------------------------------------------------------------------------------*/
     
     public void saveFile() {
         
@@ -47,8 +53,12 @@ public class Ranking {
             
             FileWriter writer = new FileWriter(fileObject, false);
             
+            int i = 10;
             for(RankField rankfield : rankList) {
+                
+                if(i < 0) break;
                 writer.write(rankfield.toString());
+                i--;
             }
             
             writer.close();
@@ -58,6 +68,8 @@ public class Ranking {
             System.out.println("Błąd zapisu do pliku!");
         }
     }
+    
+    /*------------------------------------------------------------------------------------*/
     
     public void init() {
         
@@ -84,13 +96,15 @@ public class Ranking {
         }
     }
     
+    /*------------------------------------------------------------------------------------*/
+    
     public String prepareRanking() {
         
         String text = "<html>Ranking:<br/>";
         
         for(int i = 0; i < rankList.size() && i < 10; i++) {
             
-            text += String.valueOf(i) + ". ";
+            text += String.valueOf(i+1) + ". ";
             text += rankList.get(i).toString();
             text += "<br/>";
         }
