@@ -25,8 +25,6 @@ public class PacmanUI extends JFrame implements KeyListener {
 	private final int INITIAL_DELAY = 10;
 	private final int PERIOD_INTERVAL = 10;
         private Ranking ranking = new Ranking();
-        
-        static boolean reset = true;
 
 	public PacmanUI(Pacman pacman) {
 		
@@ -78,12 +76,10 @@ public class PacmanUI extends JFrame implements KeyListener {
                         if(game.player.lives < 1) {
                             
                             timer.cancel();
-                            timer.purge();
                             
                             GameOver gameOver = new GameOver();
                             ranking.addRankField(gameOver.waitForName(), game.player.points);
                             
-                            PacmanUI.reset = true;
                         }
 		}
 	}
