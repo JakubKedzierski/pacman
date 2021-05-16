@@ -6,12 +6,10 @@ import java.util.Random;
 public class Clyde extends Sprite implements Ghost {
 
 	public Clyde(int position_x, int position_y,ArrayList<BoardField>[][]  board) {
-		this.board = board;
-		this.position_x = position_x;
-		this.position_y = position_y;
+		super(position_x,position_y,board);
 	}
 
-	
+	@Override
 	public void move() {
 		Random rand = new Random();
 		int dir = rand.nextInt(4);

@@ -162,6 +162,11 @@ class BoardPanel extends JPanel {
 					g.setColor(Color.BLUE);
 					g.fillRect(j * RECT_OFFSET + offset, i * RECT_OFFSET + offset, RECT_WIDTH, RECT_HEIGHT);
 				}
+				if (board[i][j].contains(BoardField.Food)) {
+					g.setColor(Color.WHITE);
+					g.fillOval(j * RECT_OFFSET+3 + offset, i * RECT_OFFSET+3 + offset, RECT_WIDTH - 9, RECT_HEIGHT - 9);
+				}
+				
 				if (board[i][j].contains(BoardField.Player)) {
 					g.setColor(Color.YELLOW);
 					g.fillRect(j * RECT_OFFSET + offset, i * RECT_OFFSET + offset, RECT_WIDTH, RECT_HEIGHT);
@@ -183,10 +188,7 @@ class BoardPanel extends JPanel {
 					g.fillRect(j * RECT_OFFSET + offset, i * RECT_OFFSET + offset, RECT_WIDTH, RECT_HEIGHT);
 				}
 
-				if (board[i][j].contains(BoardField.Food)) {
-					g.setColor(Color.WHITE);
-					g.fillOval(j * RECT_OFFSET+3 + offset, i * RECT_OFFSET+3 + offset, RECT_WIDTH - 9, RECT_HEIGHT - 9);
-				}
+
 			}
 		}
 	}
