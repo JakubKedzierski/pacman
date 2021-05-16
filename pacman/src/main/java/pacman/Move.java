@@ -1,6 +1,6 @@
 package pacman;
 
-public enum Move {
+public enum Move implements Cloneable {
 	Up,
 	Down,
 	Left,

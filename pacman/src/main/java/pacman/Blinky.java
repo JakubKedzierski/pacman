@@ -3,35 +3,59 @@ package pacman;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Blinky extends Sprite implements Ghost{
+public class Blinky extends Sprite implements Ghost {
 
+	private Player player;
 
-	protected Blinky(int position_x, int position_y, ArrayList<BoardField>[][] board) {
+	protected Blinky(int position_x, int position_y, ArrayList<BoardField>[][] board, Player player) {
 		super(position_x, position_y, board);
+		this.player = player;
 	}
 
 	@Override
 	public synchronized void move() {
-		Random rand = new Random();
-		int dir = rand.nextInt(4);
 		Move move = Move.Stop;
-		switch(dir) {
-		case 0:
-			move = Move.Down;
-			break;
-		case 1:
-			move = Move.Up;
-			break;
-		case 2:
-			move = Move.Left;
-			break;
-		case 3:
-			move = Move.Right;
-			break;
+		
+
+		int verticalDistance = Math.abs(player.getPosition_x() - position_x);
+		int horizontalDistance = Math.abs(player.getPosition_y() - position_y);
+		
+		if(verticalDistance < 8 || horizontalDistance < 8)
+		if (horizontalDistance > verticalDistance) {
+			if (player.getPosition_y() > position_y && checkMove(Move.Right)) {
+				move = Move.Right;
+			} else if (player.getPosition_y() < position_y && checkMove(Move.Left)) {
+				move = Move.Left;
+			}
+		} else {
+			if (player.getPosition_x() > position_x && checkMove(Move.Down)) {
+				move = Move.Down;
+			} else if (player.getPosition_x() < position_x && checkMove(Move.Up)) {
+				move = Move.Up;
+			}
 		}
-		
-		move(move,BoardField.Blinky);
-		
+
+		if (move == Move.Stop) {
+			Random rand = new Random();
+			int dir = rand.nextInt(4);
+			switch (dir) {
+			case 0:
+				move = Move.Down;
+				break;
+			case 1:
+				move = Move.Up;
+				break;
+			case 2:
+				move = Move.Left;
+				break;
+			case 3:
+				move = Move.Right;
+				break;
+			}
+		}
+
+		move(move, BoardField.Blinky);
+
 	}
 
 }

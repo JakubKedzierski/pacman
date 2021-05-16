@@ -11,8 +11,8 @@ public class Player extends Sprite {
 
 	@Getter
 	int points = 0;
-	@Setter
 	private Move direction = Move.Stop;
+	private Move previousMove = Move.Stop;
 	@Getter
 	int lives = 1;
 
@@ -20,9 +20,18 @@ public class Player extends Sprite {
 		super(position_x,position_y,board);
 	}
 	
+	public void setDirection(Move move) {
+		if(direction == Move.Right) previousMove = Move.Right;
+		if(direction == Move.Left) previousMove = Move.Left;
+		if(direction == Move.Up) previousMove = Move.Up;
+		if(direction == Move.Down) previousMove = Move.Down;
+		this.direction = move;
+	}
+	
 	@Override
 	public synchronized void move() {
-
+		if(!checkMove(direction)) direction = previousMove;
+		
 		move(direction, BoardField.Player);
 		
 		boolean a = board[position_x][position_y].contains(BoardField.Blinky);
@@ -31,7 +40,9 @@ public class Player extends Sprite {
 		boolean d = board[position_x][position_y].contains(BoardField.Pinky);
 
 		if (a | b | c | d) {
-			lives--;
+			timer.purge();
+			timer.cancel();
+			lives--; 
 		}
 
 		if (board[position_x][position_y].contains(BoardField.Food)) {

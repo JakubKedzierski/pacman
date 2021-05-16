@@ -10,8 +10,10 @@ public abstract class Sprite implements Runnable {
 	protected Timer timer;
 	protected final int INITIAL_DELAY = 150;
 	protected final int PERIOD_INTERVAL = 150;
-	protected volatile ArrayList<BoardField>[][] board;
+	protected volatile ArrayList<BoardField>[][] board = null;
+	@Getter
 	protected int position_x = 0;
+	@Getter
 	protected int position_y = 0;
 	protected int boardWidth = BoardFactory.boardWidth;
 	protected int boardHeight = BoardFactory.boardHeigth;
@@ -123,6 +125,11 @@ public abstract class Sprite implements Runnable {
 			}
 		}
 
+	}
+	
+	public ArrayList<Move> getPossibleMoves(){
+		ArrayList<Move> moves = new ArrayList<Move>();
+		return moves;
 	}
 
 	protected abstract void move();

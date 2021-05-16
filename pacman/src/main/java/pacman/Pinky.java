@@ -15,7 +15,9 @@ public class Pinky extends Sprite implements Ghost {
 	@Override
 	public synchronized void move() {
 		Random rand = new Random();
+		
 		int dir = rand.nextInt(4);
+		
 		Move move = Move.Stop;
 		switch(dir) {
 		case 0:
