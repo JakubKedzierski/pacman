@@ -174,6 +174,14 @@ class BoardPanel extends JPanel {
 					g.setColor(Color.PINK);
 					g.fillRect(j * RECT_OFFSET + offset, i * RECT_OFFSET + offset, RECT_WIDTH, RECT_HEIGHT);
 				}
+				if (board[i][j].contains(BoardField.Blinky)) {
+					g.setColor(Color.RED);
+					g.fillRect(j * RECT_OFFSET + offset, i * RECT_OFFSET + offset, RECT_WIDTH, RECT_HEIGHT);
+				}
+				if (board[i][j].contains(BoardField.Inky)) {
+					g.setColor(Color.MAGENTA);
+					g.fillRect(j * RECT_OFFSET + offset, i * RECT_OFFSET + offset, RECT_WIDTH, RECT_HEIGHT);
+				}
 
 				if (board[i][j].contains(BoardField.Food)) {
 					g.setColor(Color.WHITE);

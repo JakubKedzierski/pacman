@@ -6,6 +6,12 @@ public class BoardFactory {
 
 	static int boardWidth = 15;
 	static int boardHeigth = 35;
+	public static int[] playerDefaultPosition = {13,18};
+	public static int[] blinkyDefaultPosition = {7,18};
+	public static int[] inkyDefaultPosition = {8,18};
+	public static int[] clydeDefaultPosition = {8,19};
+	public static int[] pinkyDefaultPosition = {8,17};
+
 	
 	@SuppressWarnings("unchecked")
 	public static ArrayList<BoardField>[][] createBoard(){
@@ -82,16 +88,19 @@ public class BoardFactory {
 	}	
 	
 	public static void setDefaultPosition(ArrayList<BoardField>[][] board) {
-		board[13][18].clear();
-		board[13][18].add(BoardField.Player);
+		board[playerDefaultPosition[0]][playerDefaultPosition[1]].clear();
+		board[playerDefaultPosition[0]][playerDefaultPosition[1]].add(BoardField.Player);
 		
-		board[7][18].clear();
-		board[7][18].add(BoardField.Pinky);
-		board[8][18].clear();
-		board[8][18].add(BoardField.Clyde);
-		board[8][19].clear();
-		board[8][19].add(BoardField.Blinky);
-		board[8][17].clear();
-		board[8][17].add(BoardField.Inky);
+		board[pinkyDefaultPosition[0]][pinkyDefaultPosition[1]].clear();
+		board[pinkyDefaultPosition[0]][pinkyDefaultPosition[1]].add(BoardField.Pinky);
+		board[clydeDefaultPosition[0]][clydeDefaultPosition[1]].clear();
+		board[clydeDefaultPosition[0]][clydeDefaultPosition[1]].add(BoardField.Clyde);
+		board[blinkyDefaultPosition[0]][blinkyDefaultPosition[1]].clear();
+		board[blinkyDefaultPosition[0]][blinkyDefaultPosition[1]].add(BoardField.Blinky);
+		board[inkyDefaultPosition[0]][inkyDefaultPosition[1]].clear();
+		board[inkyDefaultPosition[0]][inkyDefaultPosition[1]].add(BoardField.Inky);
 	}
+	
+
+	
 }

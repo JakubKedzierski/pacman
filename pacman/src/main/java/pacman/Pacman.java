@@ -24,9 +24,9 @@ public class Pacman {
 		BoardFactory.setDefaultPosition(board);
 		
 		sprites = new ArrayList<Sprite>();
-		this.player = new Player(13,18,board);
+		this.player = new Player(BoardFactory.playerDefaultPosition[0],BoardFactory.playerDefaultPosition[1],board);
 		sprites.add(this.player);
-		sprites.add(new Pinky(4,7,board));
+		sprites.add(new Pinky(BoardFactory.pinkyDefaultPosition[0],BoardFactory.pinkyDefaultPosition[1],board));
 		sprites.add(new Clyde(4,13,board));
 
 	}
