@@ -19,11 +19,12 @@ public class Player extends Sprite {
 	public Player(int position_x, int position_y, ArrayList<BoardField>[][] board) {
 		super(position_x,position_y,board);
 	}
-
-	public void move() {
+	
+	@Override
+	public synchronized void move() {
 
 		move(direction, BoardField.Player);
-
+		
 		boolean a = board[position_x][position_y].contains(BoardField.Blinky);
 		boolean b = board[position_x][position_y].contains(BoardField.Clyde);
 		boolean c = board[position_x][position_y].contains(BoardField.Inky);

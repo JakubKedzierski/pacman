@@ -10,7 +10,7 @@ public class Inky extends Sprite implements Ghost {
 	}
 
 	@Override
-	public void move() {
+	public synchronized void move() {
 		Random rand = new Random();
 		int dir = rand.nextInt(4);
 		Move move = Move.Stop;

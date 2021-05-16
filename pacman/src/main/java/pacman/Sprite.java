@@ -35,7 +35,7 @@ public abstract class Sprite implements Runnable {
 		}
 	}
 
-	protected boolean checkMove(Move move) {
+	protected synchronized boolean checkMove(Move move) {
 		switch (move) {
 		case Up:
 			if (position_x - 1 > 0) {
@@ -74,7 +74,7 @@ public abstract class Sprite implements Runnable {
 		return false;
 	}
 
-	protected void move(Move move, BoardField sprite) {
+	protected synchronized void move(Move move, BoardField sprite) {
 		if (checkMove(move)) {
 			switch (move) {
 			case Right:

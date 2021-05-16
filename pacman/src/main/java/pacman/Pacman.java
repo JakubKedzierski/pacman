@@ -20,7 +20,7 @@ public class Pacman {
 
 	public Pacman() {
 
-		board = BoardFactory.createBoard();
+		board = BoardFactory.createBoard(1);
 		BoardFactory.setDefaultPosition(board);
 		
 		sprites = new ArrayList<Sprite>();
