@@ -13,8 +13,8 @@ public abstract class Sprite implements Runnable {
 	protected volatile ArrayList<BoardField>[][] board;
 	protected int position_x = 0;
 	protected int position_y = 0;
-	protected int boardWidth = 20;
-	protected int boardHeight = 20;
+	protected int boardWidth = BoardFactory.boardWidth;
+	protected int boardHeight = BoardFactory.boardHeigth;
 
 	public void run() {
 		timer = new Timer();
@@ -56,6 +56,7 @@ public abstract class Sprite implements Runnable {
 			break;
 
 		case Right:
+
 			if (position_y + 1 < boardWidth) {
 				if (!board[position_x][position_y + 1].contains(BoardField.Obstacle)) {
 					return true;
