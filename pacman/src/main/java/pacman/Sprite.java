@@ -46,7 +46,7 @@ public abstract class Sprite implements Runnable {
 			break;
 
 		case Down:
-			if (position_x + 1 < boardHeight) {
+			if (position_x + 1 < boardWidth) {
 				if (!board[position_x + 1][position_y].contains(BoardField.Obstacle)) {
 					return true;
 				}
@@ -63,7 +63,7 @@ public abstract class Sprite implements Runnable {
 
 		case Right:
 
-			if (position_y + 1 < boardWidth) {
+			if (position_y + 1 < boardHeight) {
 				if (!board[position_x][position_y + 1].contains(BoardField.Obstacle)) {
 					return true;
 				}
