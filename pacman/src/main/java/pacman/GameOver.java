@@ -26,7 +26,8 @@ public class GameOver extends JFrame {
             JLabel lblNewLabel_2 = new JLabel("Należy podać nazwę gracza:");
             lblNewLabel_2.setBounds(10, 10, 300, 36);
             dialogPanel.add(lblNewLabel_2);
-
+            this.getContentPane().add(dialogPanel);
+            
             lblpoints = new JLabel();
             lblpoints.setBounds(50, 10, 300, 36);
             dialogPanel.add(lblpoints);

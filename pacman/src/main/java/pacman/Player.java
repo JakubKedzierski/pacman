@@ -3,6 +3,7 @@ package pacman;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+import jdk.jfr.Unsigned;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -32,9 +33,7 @@ public class Player extends Sprite {
 	public synchronized void move() {
 		if(!checkMove(direction)) direction = previousMove;
 		
-		move(direction, BoardField.Player);
-		
-		boolean a = board[position_x][position_y].contains(BoardField.Blinky);
+                boolean a = board[position_x][position_y].contains(BoardField.Blinky);
 		boolean b = board[position_x][position_y].contains(BoardField.Clyde);
 		boolean c = board[position_x][position_y].contains(BoardField.Inky);
 		boolean d = board[position_x][position_y].contains(BoardField.Pinky);
@@ -44,6 +43,8 @@ public class Player extends Sprite {
 			timer.cancel();
 			lives--; 
 		}
+                
+		move(direction, BoardField.Player);
 
 		if (board[position_x][position_y].contains(BoardField.Food)) {
 			points += 10;
