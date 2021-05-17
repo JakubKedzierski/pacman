@@ -7,6 +7,8 @@ import java.io.FileWriter;
 
 import java.io.IOException;
 import java.util.Scanner;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 /*------------------------------------------------------------------------------------*/
 
@@ -112,4 +114,41 @@ public class Ranking {
 
 		return text;
 	}
+        
+        /*------------------------------------------------------------------------------------*/
+        
+        public JTable prepareRankingTable() {
+            
+            String[] columnNames = 
+                        {"Miejsce",
+                        "Nazwa",
+                        "Punkty"};
+            
+            String[][] rowData = new String[11][3];
+    
+            rowData[0][0] =  "Miejsce";
+            rowData[0][1] =  "Nazwa";
+            rowData[0][2] =  "Punkty";
+            
+            for (int i = 0; i < rankList.size() && i < 10; i++) {
+                
+                rowData[i+1][0] =  String.valueOf(i+1);
+                rowData[i+1][1] =  rankList.get(i).playerName;
+                rowData[i+1][2] =  String.valueOf(rankList.get(i).points);
+            }
+
+            JTable rankTable = new JTable(rowData, columnNames){
+                
+                private static final long serialVersionUID = 1L;
+
+                public boolean isCellEditable(int row, int column) {                
+                        return false;               
+                };
+            };
+            
+            rankTable.setCellSelectionEnabled(false);
+            rankTable.setFocusable(false);
+            
+            return rankTable;
+        }
 }
