@@ -3,6 +3,8 @@ package pacman;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
+
 import lombok.Getter;
 
 public class Pacman implements PacmanView {
@@ -45,6 +47,11 @@ public class Pacman implements PacmanView {
 			sprite.setDefaultPosition();
 		}
 		BoardFactory.setDefaultPosition(board);
+		try {
+			TimeUnit.SECONDS.sleep(1);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		for(Sprite sprite:sprites) {
 			sprite.restart();
 		}

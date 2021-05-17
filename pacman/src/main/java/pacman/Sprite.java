@@ -107,8 +107,9 @@ public abstract class Sprite implements Runnable {
 				board[position_x][position_y].add(BoardField.EmptyField);
 				position_y = position_y + 1;
 
-				if (board[position_x][position_y].contains(BoardField.EmptyField))
+				if (board[position_x][position_y].contains(BoardField.EmptyField)) {
 					board[position_x][position_y].remove(BoardField.EmptyField);
+				}
 
 				board[position_x][position_y].add(sprite);
 				break;
