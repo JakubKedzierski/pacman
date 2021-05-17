@@ -10,15 +10,14 @@ public class GameOver extends JFrame {
     
         private Ranking ranking = null;
         private BoardPanel dialogPanel = new BoardPanel();
-        private JLabel lblpoints;
         
         public boolean waitForClose = true;
         
-	public GameOver() {
+	public GameOver(int points) {
 		
             super("Pacman");
             
-            setTitle("Koniec gry");
+            setTitle("Koniec gry - " + String.valueOf(points) + "pkt.");
             setSize(320, 240);
             setLocationRelativeTo(null);
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -26,11 +25,9 @@ public class GameOver extends JFrame {
             JLabel lblNewLabel_2 = new JLabel("Należy podać nazwę gracza:");
             lblNewLabel_2.setBounds(10, 10, 300, 36);
             dialogPanel.add(lblNewLabel_2);
-            this.getContentPane().add(dialogPanel);
             
-            lblpoints = new JLabel();
-            lblpoints.setBounds(50, 10, 300, 36);
-            dialogPanel.add(lblpoints);
+            this.getContentPane().add(dialogPanel);
+            this.setResizable(false);
             setVisible(true);
 	}
         

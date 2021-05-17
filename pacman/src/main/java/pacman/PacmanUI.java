@@ -64,14 +64,6 @@ public class PacmanUI extends JFrame implements KeyListener {
                 boardPanel.add(rankingTable);
                 
                 
-		/*lblranking = new JLabel();
-		lblranking.setBounds(970, 210, 300, 300);
-		boardPanel.add(lblranking);
-
-		ranking.init();
-		lblranking.setText(ranking.prepareRanking());
-                */
-                
 		timer = new Timer();
 		timer.scheduleAtFixedRate(new gameLoop(), INITIAL_DELAY, PERIOD_INTERVAL);
 		setVisible(true);
@@ -88,7 +80,7 @@ public class PacmanUI extends JFrame implements KeyListener {
 
 				timer.cancel();
 
-				GameOver gameOver = new GameOver();
+				GameOver gameOver = new GameOver(game.getPlayer().getPoints());
 				ranking.addRankField(gameOver.waitForName(), game.getPlayer().getPoints());
 
 			}
