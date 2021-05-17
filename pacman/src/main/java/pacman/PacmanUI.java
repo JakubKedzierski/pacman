@@ -9,8 +9,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
 
 public class PacmanUI extends JFrame implements KeyListener {
@@ -19,7 +21,8 @@ public class PacmanUI extends JFrame implements KeyListener {
 	private BoardPanel boardPanel = null;
 
 	private JLabel lblpoints = null;
-	private JLabel lblranking = null;
+	//private JLabel lblranking = null;
+        private JTable rankingTable = null;
 
 	private Timer timer;
 	private final int INITIAL_DELAY = 10;
@@ -55,13 +58,12 @@ public class PacmanUI extends JFrame implements KeyListener {
 		lblpoints.setBounds(970, 200, 217, 36);
 		boardPanel.add(lblpoints);
 
-		lblranking = new JLabel();
-		lblranking.setBounds(970, 210, 300, 300);
-		boardPanel.add(lblranking);
-
-		ranking.init();
-		lblranking.setText(ranking.prepareRanking());
-
+                ranking.init();
+                rankingTable = ranking.prepareRankingTable();
+                rankingTable.setBounds(900, 250, 250, 176);
+                boardPanel.add(rankingTable);
+                
+                
 		timer = new Timer();
 		timer.scheduleAtFixedRate(new gameLoop(), INITIAL_DELAY, PERIOD_INTERVAL);
 		setVisible(true);
@@ -78,7 +80,7 @@ public class PacmanUI extends JFrame implements KeyListener {
 
 				timer.cancel();
 
-				GameOver gameOver = new GameOver();
+				GameOver gameOver = new GameOver(game.getPlayer().getPoints());
 				ranking.addRankField(gameOver.waitForName(), game.getPlayer().getPoints());
 
 			}
