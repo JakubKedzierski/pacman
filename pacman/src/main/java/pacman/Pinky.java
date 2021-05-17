@@ -8,8 +8,9 @@ import java.util.Random;
 public class Pinky extends Sprite implements Ghost {
 	
 	
-	public Pinky(int position_x, int position_y,ArrayList<BoardField>[][]  board) {
-		super(position_x,position_y,board);
+	public Pinky(int position_x, int position_y,ArrayList<BoardField>[][]  board, PacmanView pacman) {
+		super(position_x,position_y,board, pacman);
+		sprite = BoardField.Pinky;
 	}
 	
 	@Override

@@ -5,7 +5,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import lombok.Getter;
 
-public class Pacman {
+public class Pacman implements PacmanView {
 	@Getter
 	private volatile ArrayList<BoardField>[][] board = null;
 	@Getter
@@ -24,18 +24,29 @@ public class Pacman {
 		BoardFactory.setDefaultPosition(board);
 		
 		sprites = new ArrayList<Sprite>();
-		this.player = new Player(BoardFactory.playerDefaultPosition[0],BoardFactory.playerDefaultPosition[1],board);
+		this.player = new Player(BoardFactory.playerDefaultPosition[0],BoardFactory.playerDefaultPosition[1],board,this);
 		sprites.add(this.player);
-		sprites.add(new Pinky(BoardFactory.pinkyDefaultPosition[0],BoardFactory.pinkyDefaultPosition[1],board));
-		sprites.add(new Clyde(BoardFactory.clydeDefaultPosition[0],BoardFactory.clydeDefaultPosition[1],board));
-		sprites.add(new Blinky(BoardFactory.blinkyDefaultPosition[0],BoardFactory.blinkyDefaultPosition[1],board,player));
-		sprites.add(new Inky(BoardFactory.inkyDefaultPosition[0],BoardFactory.inkyDefaultPosition[1],board));
+		sprites.add(new Pinky(BoardFactory.pinkyDefaultPosition[0],BoardFactory.pinkyDefaultPosition[1],board,this));
+		sprites.add(new Clyde(BoardFactory.clydeDefaultPosition[0],BoardFactory.clydeDefaultPosition[1],board,this));
+		sprites.add(new Blinky(BoardFactory.blinkyDefaultPosition[0],BoardFactory.blinkyDefaultPosition[1],board,player,this));
+		sprites.add(new Inky(BoardFactory.inkyDefaultPosition[0],BoardFactory.inkyDefaultPosition[1],board,this));
 
 	}
 	
 	public void play() {
 		for(Sprite sprite:sprites) {
 			new Thread(sprite).start();
+		}
+	}
+
+	@Override
+	public void restartGame() {
+		for(Sprite sprite:sprites) {
+			sprite.setDefaultPosition();
+		}
+		BoardFactory.setDefaultPosition(board);
+		for(Sprite sprite:sprites) {
+			sprite.restart();
 		}
 	}
 

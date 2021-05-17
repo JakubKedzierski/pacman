@@ -15,35 +15,46 @@ public class Player extends Sprite {
 	private Move direction = Move.Stop;
 	private Move previousMove = Move.Stop;
 	@Getter
-	int lives = 1;
-
-	public Player(int position_x, int position_y, ArrayList<BoardField>[][] board) {
-		super(position_x,position_y,board);
-	}
+	int lives = 3;
 	
+	
+
+	public Player(int position_x, int position_y, ArrayList<BoardField>[][] board, PacmanView pacman) {
+		super(position_x, position_y, board, pacman);
+		sprite = BoardField.Player;
+	}
+
 	public void setDirection(Move move) {
-		if(direction == Move.Right) previousMove = Move.Right;
-		if(direction == Move.Left) previousMove = Move.Left;
-		if(direction == Move.Up) previousMove = Move.Up;
-		if(direction == Move.Down) previousMove = Move.Down;
+		if (direction == Move.Right)
+			previousMove = Move.Right;
+		if (direction == Move.Left)
+			previousMove = Move.Left;
+		if (direction == Move.Up)
+			previousMove = Move.Up;
+		if (direction == Move.Down)
+			previousMove = Move.Down;
 		this.direction = move;
 	}
 	
+
+
 	@Override
 	public synchronized void move() {
-		if(!checkMove(direction)) direction = previousMove;
-		
-                boolean a = board[position_x][position_y].contains(BoardField.Blinky);
+		if (!checkMove(direction))
+			direction = previousMove;
+
+		boolean a = board[position_x][position_y].contains(BoardField.Blinky);
 		boolean b = board[position_x][position_y].contains(BoardField.Clyde);
 		boolean c = board[position_x][position_y].contains(BoardField.Inky);
 		boolean d = board[position_x][position_y].contains(BoardField.Pinky);
 
 		if (a | b | c | d) {
-			timer.purge();
-			timer.cancel();
-			lives--; 
+			lives--;
+			if(lives >=0) {
+				pacman.restartGame();
+			}
 		}
-                
+
 		move(direction, BoardField.Player);
 
 		if (board[position_x][position_y].contains(BoardField.Food)) {

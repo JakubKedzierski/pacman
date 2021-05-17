@@ -17,16 +17,23 @@ public abstract class Sprite implements Runnable {
 	protected int position_y = 0;
 	protected int boardWidth = BoardFactory.boardWidth;
 	protected int boardHeight = BoardFactory.boardHeigth;
+	protected BoardField sprite;
+	PacmanView pacman = null;
+	
+	protected int[] defaultPosition = new int[2];
 
 	public void run() {
 		timer = new Timer();
 		timer.scheduleAtFixedRate(new gameLoop(), INITIAL_DELAY, PERIOD_INTERVAL);
 	}
 	
-	protected Sprite(int position_x, int position_y, ArrayList<BoardField>[][]  board) {
+	protected Sprite(int position_x, int position_y, ArrayList<BoardField>[][]  board,PacmanView pacman) {
 		this.board = board;
 		this.position_x = position_x;
 		this.position_y = position_y;
+		this.defaultPosition[0] = position_x;
+		this.defaultPosition[1] = position_y;
+		this.pacman = pacman;
 	}
 
 	protected class gameLoop extends TimerTask {
@@ -74,6 +81,22 @@ public abstract class Sprite implements Runnable {
 
 		}
 		return false;
+	}
+	
+	public synchronized void setDefaultPosition() {
+		timer.cancel();
+		timer.purge();
+		board[position_x][position_y].remove(sprite);
+		if(!board[position_x][position_y].contains(BoardField.EmptyField)) {
+			board[position_x][position_y].add(BoardField.EmptyField);
+		}
+		position_x = defaultPosition[0];
+		position_y = defaultPosition[1];
+	}
+	
+	public void restart() {
+		timer = new Timer();
+		timer.scheduleAtFixedRate(new gameLoop(), INITIAL_DELAY, PERIOD_INTERVAL);
 	}
 
 	protected synchronized void move(Move move, BoardField sprite) {

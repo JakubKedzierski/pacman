@@ -5,8 +5,9 @@ import java.util.Random;
 
 public class Inky extends Sprite implements Ghost {
 
-	protected Inky(int position_x, int position_y, ArrayList<BoardField>[][] board) {
-		super(position_x, position_y, board);
+	protected Inky(int position_x, int position_y, ArrayList<BoardField>[][] board, PacmanView pacman) {
+		super(position_x, position_y, board, pacman);
+		sprite = BoardField.Inky;
 	}
 
 	@Override
