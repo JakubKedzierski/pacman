@@ -38,4 +38,10 @@ public class Pinky extends Sprite implements Ghost {
 		move(move,BoardField.Pinky);
 	}
 
+	@Override
+	public Move generateMove() {
+		return null;
+		
+	}
+
 }

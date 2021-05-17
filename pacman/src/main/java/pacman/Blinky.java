@@ -15,26 +15,7 @@ public class Blinky extends Sprite implements Ghost {
 
 	@Override
 	public synchronized void move() {
-		Move move = Move.Stop;
-		
-
-		int verticalDistance = Math.abs(player.getPosition_x() - position_x);
-		int horizontalDistance = Math.abs(player.getPosition_y() - position_y);
-		
-		if(verticalDistance < 8 || horizontalDistance < 8)
-		if (horizontalDistance > verticalDistance) {
-			if (player.getPosition_y() > position_y && checkMove(Move.Right)) {
-				move = Move.Right;
-			} else if (player.getPosition_y() < position_y && checkMove(Move.Left)) {
-				move = Move.Left;
-			}
-		} else {
-			if (player.getPosition_x() > position_x && checkMove(Move.Down)) {
-				move = Move.Down;
-			} else if (player.getPosition_x() < position_x && checkMove(Move.Up)) {
-				move = Move.Up;
-			}
-		}
+		Move move = generateMove();
 
 		if (move == Move.Stop) {
 			Random rand = new Random();
@@ -57,6 +38,31 @@ public class Blinky extends Sprite implements Ghost {
 
 		move(move, BoardField.Blinky);
 
+	}
+
+	@Override
+	public Move generateMove() {
+		Move move = Move.Stop;
+		
+		int verticalDistance = Math.abs(player.getPosition_x() - position_x);
+		int horizontalDistance = Math.abs(player.getPosition_y() - position_y);
+		
+		if(verticalDistance < 8 || horizontalDistance < 8)
+		if (horizontalDistance > verticalDistance) {
+			if (player.getPosition_y() > position_y && checkMove(Move.Right)) {
+				move = Move.Right;
+			} else if (player.getPosition_y() < position_y && checkMove(Move.Left)) {
+				move = Move.Left;
+			}
+		} else {
+			if (player.getPosition_x() > position_x && checkMove(Move.Down)) {
+				move = Move.Down;
+			} else if (player.getPosition_x() < position_x && checkMove(Move.Up)) {
+				move = Move.Up;
+			}
+		}
+		
+		return move;
 	}
 
 }

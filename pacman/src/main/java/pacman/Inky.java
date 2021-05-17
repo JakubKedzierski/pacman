@@ -34,4 +34,10 @@ public class Inky extends Sprite implements Ghost {
 		
 	}
 
+	@Override
+	public Move generateMove() {
+		return null;
+		
+	}
+
 }

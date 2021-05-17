@@ -35,4 +35,10 @@ public class Clyde extends Sprite implements Ghost {
 
 	}
 
+	@Override
+	public Move generateMove() {
+		return null;
+		
+	}
+
 }
