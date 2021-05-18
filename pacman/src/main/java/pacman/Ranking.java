@@ -26,10 +26,12 @@ class RankField {
 		this.points = points;
 	}
 
+        @Override
 	public String toString() {
 
 		return playerName + " " + String.valueOf(points) + "\n";
 	}
+        
 }
 
 /*------------------------------------------------------------------------------------*/
@@ -42,27 +44,38 @@ public class Ranking {
 	public void addRankField(String name, int points) {
 
 		rankList.add(new RankField(name, points));
-		
+		acceptChanges();
 	}
         
         /*------------------------------------------------------------------------------------*/
         
         private void sortRanking() {
             
+            for (int i = 0; i < 10; i++) {
+                for(int j = 0; j < 10; j++) {
+                    
+                   if(rankList.get(j+1).points > rankList.get(j).points) {
+                    
+                       RankField tmpRankField = rankList.get(j);
+                       rankList.set(j, rankList.get(j+1));
+                       rankList.set(j+1, tmpRankField);
+                       
+                    }
+                }
+            }
         }
         
         /*------------------------------------------------------------------------------------*/
         
         private void acceptChanges() {
             
-            sortRanking();
             saveFile();
             init();
         }
 
 	/*------------------------------------------------------------------------------------*/
 
-	public void saveFile() {
+	private void saveFile() {
 
 		File fileObject = new File("Ranking.sav");
 
@@ -111,6 +124,8 @@ public class Ranking {
 		} catch (IOException e) {
 			System.out.println("Błąd odczytu!");
 		}
+                
+                sortRanking();
 	}
 
 	/*------------------------------------------------------------------------------------*/
@@ -165,5 +180,8 @@ public class Ranking {
             rankTable.setFocusable(false);
             
             return rankTable;
+        }
+        
+        
         }
 }
