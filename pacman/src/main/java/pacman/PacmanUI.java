@@ -79,6 +79,7 @@ public class PacmanUI extends JFrame implements KeyListener {
 			if (game.getPlayer().getLives() < 1) {
 
 				timer.cancel();
+                                timer.purge();
 
 				GameOver gameOver = new GameOver(game.getPlayer().getPoints());
 				ranking.addRankField(gameOver.waitForName(), game.getPlayer().getPoints());

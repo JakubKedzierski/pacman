@@ -42,8 +42,23 @@ public class Ranking {
 	public void addRankField(String name, int points) {
 
 		rankList.add(new RankField(name, points));
-		saveFile();
+		
 	}
+        
+        /*------------------------------------------------------------------------------------*/
+        
+        private void sortRanking() {
+            
+        }
+        
+        /*------------------------------------------------------------------------------------*/
+        
+        private void acceptChanges() {
+            
+            sortRanking();
+            saveFile();
+            init();
+        }
 
 	/*------------------------------------------------------------------------------------*/
 
