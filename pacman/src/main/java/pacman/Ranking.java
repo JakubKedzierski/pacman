@@ -51,8 +51,8 @@ public class Ranking {
         
         private void sortRanking() {
             
-            for (int i = 0; i < 10; i++) {
-                for(int j = 0; j < 10; j++) {
+            for (int i = 0; i < 9; i++) {
+                for(int j = 0; j <= i; j++) {
                     
                    if(rankList.get(j+1).points > rankList.get(j).points) {
                     
@@ -130,7 +130,7 @@ public class Ranking {
 
 	/*------------------------------------------------------------------------------------*/
 
-	public String prepareRanking() {
+	/*public String prepareRanking() {
 
 		String text = "<html>Ranking:<br/>";
 
@@ -143,7 +143,7 @@ public class Ranking {
 		text += "</html>";
 
 		return text;
-	}
+	}*/
         
         /*------------------------------------------------------------------------------------*/
         
@@ -183,5 +183,4 @@ public class Ranking {
         }
         
         
-        }
 }

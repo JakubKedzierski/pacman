@@ -5,7 +5,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionEvent;
+ import java.awt.event.ActionListener;
 
 public class GameOver extends JFrame {
     
@@ -27,9 +30,14 @@ public class GameOver extends JFrame {
             lblNewLabel_2.setBounds(10, 10, 300, 36);
             dialogPanel.add(lblNewLabel_2);
             
-            JTextField playerNameField = new JTextField("Gracz");
+            JTextField playerNameField = new JTextField("PrzykladowyNickGracza");
             playerNameField.setBounds(10, 80, 300, 50);
             dialogPanel.add(playerNameField);
+            
+            CloseButton closeButton = new CloseButton();
+            closeButton.setText("Zapisz");
+            closeButton.setBounds(10, 200, 200, 50);
+            dialogPanel.add(closeButton);
             
             this.getContentPane().add(dialogPanel);
             this.setResizable(false);
@@ -45,3 +53,11 @@ public class GameOver extends JFrame {
             return "ab";
         }
 }
+
+class CloseButton extends JButton implements ActionListener{
+ 	
+    @Override
+    public void actionPerformed(ActionEvent arg0) {
+
+    }
+ }
