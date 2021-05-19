@@ -15,10 +15,11 @@ public class GameOver extends JFrame {
         private Ranking ranking = null;
         private BoardPanel dialogPanel = new BoardPanel();
         JTextField playerNameField = null;
+        JButton saveButton = null;
         
         public boolean waitForClose;
         
-	public GameOver(int points) {
+	public GameOver(final int points, final RankingInterface ranking) {
 		
             super("Pacman");
             
@@ -35,14 +36,16 @@ public class GameOver extends JFrame {
             playerNameField.setBounds(10, 80, 300, 50);
             dialogPanel.add(playerNameField);
             
-            JButton saveButton = new JButton();
+            saveButton = new JButton();
             saveButton.setText("Zapisz");
             saveButton.setBounds(10, 200, 200, 50);
             
             saveButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                   waitForClose = false;
-                }          
+                   
+                    ranking.addRankField(playerNameField.getText(), points);
+                    dispose();
+                }
              } );
             
             dialogPanel.add(saveButton);
@@ -54,11 +57,4 @@ public class GameOver extends JFrame {
             waitForClose = true;
 	}
         
-        public String waitForName() {
-           
-            while(true) { if(!waitForClose) break; }
-            setVisible(false);
-            
-            return playerNameField.getText();
-        }
 }

@@ -36,7 +36,7 @@ class RankField {
 
 /*------------------------------------------------------------------------------------*/
 
-public class Ranking {
+public class Ranking implements RankingInterface{
 
 	@Getter
 	private final ArrayList<RankField> rankList = new ArrayList<RankField>();
@@ -51,7 +51,7 @@ public class Ranking {
         
         private void sortRanking() {
             
-            for (int i = 0; i < 9; i++) {
+            for (int i = 0; i < 9 && i < rankList.size() -1; i++) {
                 for(int j = 0; j <= i; j++) {
                     
                    if(rankList.get(j+1).points > rankList.get(j).points) {
