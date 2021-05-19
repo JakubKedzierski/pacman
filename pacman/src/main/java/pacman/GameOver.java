@@ -14,8 +14,9 @@ public class GameOver extends JFrame {
     
         private Ranking ranking = null;
         private BoardPanel dialogPanel = new BoardPanel();
+        JTextField playerNameField = null;
         
-        public boolean waitForClose = true;
+        public boolean waitForClose;
         
 	public GameOver(int points) {
 		
@@ -30,34 +31,34 @@ public class GameOver extends JFrame {
             lblNewLabel_2.setBounds(10, 10, 300, 36);
             dialogPanel.add(lblNewLabel_2);
             
-            JTextField playerNameField = new JTextField("PrzykladowyNickGracza");
+            playerNameField = new JTextField("PrzykladowyNickGracza");
             playerNameField.setBounds(10, 80, 300, 50);
             dialogPanel.add(playerNameField);
             
-            CloseButton closeButton = new CloseButton();
-            closeButton.setText("Zapisz");
-            closeButton.setBounds(10, 200, 200, 50);
-            dialogPanel.add(closeButton);
+            JButton saveButton = new JButton();
+            saveButton.setText("Zapisz");
+            saveButton.setBounds(10, 200, 200, 50);
+            
+            saveButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                   waitForClose = false;
+                }          
+             } );
+            
+            dialogPanel.add(saveButton);
             
             this.getContentPane().add(dialogPanel);
             this.setResizable(false);
             setVisible(true);
+            
+            waitForClose = true;
 	}
         
         public String waitForName() {
            
-            while(waitForClose) {
-                
-            }
+            while(true) { if(!waitForClose) break; }
+            setVisible(false);
             
-            return "ab";
+            return playerNameField.getText();
         }
 }
-
-class CloseButton extends JButton implements ActionListener{
- 	
-    @Override
-    public void actionPerformed(ActionEvent arg0) {
-
-    }
- }

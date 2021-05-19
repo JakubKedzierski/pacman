@@ -69,6 +69,7 @@ public class Ranking {
         
         private void acceptChanges() {
             
+            sortRanking();
             saveFile();
             init();
         }
