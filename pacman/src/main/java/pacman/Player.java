@@ -15,7 +15,7 @@ public class Player extends Sprite {
 	private Move direction = Move.Stop;
 	private Move previousMove = Move.Stop;
 	@Getter
-	int lives = 1;
+	int lives = 3;
 	
 	
 

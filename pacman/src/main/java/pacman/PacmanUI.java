@@ -82,6 +82,8 @@ public class PacmanUI extends JFrame implements KeyListener {
                                 timer.purge();
 
 				GameOver gameOver = new GameOver(game.getPlayer().getPoints(), ranking);
+                                
+                                int i = 5;
 
 			}
 		}
