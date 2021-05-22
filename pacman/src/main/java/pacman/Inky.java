@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * 
+ * Duszek nasladujacy ruchy innego duszka - w przypadku naszej gry nasladuje pinkiego
+ *
+ */
 public class Inky extends Sprite implements Ghost {
 	private boolean defaultCornerFlag = false;
 	private Sprite ghostToPursue;

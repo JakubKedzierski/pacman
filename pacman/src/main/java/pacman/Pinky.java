@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ *  Duszek probujacy odciac droge graczowi (porusza sie w przeciwnym kierunku do ruchu gracza)
+ */
 public class Pinky extends Sprite implements Ghost {
 	private boolean defaultCornerFlag = false;
 	private Player player;

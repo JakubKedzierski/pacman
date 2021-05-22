@@ -8,6 +8,11 @@ import java.util.concurrent.TimeUnit;
 
 import lombok.Getter;
 
+/**
+ * 
+ * Glowna klasa odpowiedzialna za przebieg gry
+ *
+ */
 public class Pacman implements PacmanView {
 	@Getter
 	private volatile List<BoardField>[][] board = null;
@@ -37,12 +42,18 @@ public class Pacman implements PacmanView {
 
 	}
 	
+	/**
+	 * Rozpoczecie gry - start glownej petli
+	 */
 	public void play() {
 		for(Sprite sprite:sprites) {
 			new Thread(sprite).start();
 		}
 	}
-
+	
+	/**
+	 * Po utracie zycia jesli gracz nadal ma jakies zycia nastepuje restart gry
+	 */
 	@Override
 	public void restartGame() {
 		for(Sprite sprite:sprites) {

@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * 
+ * Klasa fabryka - odpowiedzialna za tworzenie odpowiednich ustaiweñ labiryntu oraz ustawienie duchow i graczy na pozycjach domyslnych
+ *
+ */
 public class BoardFactory {
 
 	static int boardWidth = 15;
