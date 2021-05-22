@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/*
+/**
  *  Blinky to duszek ktory podaza w slad za pacmanem
  */
 public class Blinky extends Sprite implements Ghost {

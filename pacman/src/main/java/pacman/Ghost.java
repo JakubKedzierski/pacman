@@ -1,6 +1,6 @@
 package pacman;
 
-/*
+/**
  * Interfejs implementowany przez duszki
  */
 public interface Ghost{
