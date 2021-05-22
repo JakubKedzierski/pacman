@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/*
+ *  Blinky to duszek ktory podaza w slad za pacmanem
+ */
 public class Blinky extends Sprite implements Ghost {
 
 	private Player player;
@@ -51,7 +54,10 @@ public class Blinky extends Sprite implements Ghost {
 		move(move, BoardField.Blinky);
 
 	}
-
+	/**
+	 * Generowanie ruchu do domyœlnego rogu
+	 * @return odpowiedni ruch
+	 */
 	public Move goToDefaultCorner() {
 		Move move = Move.Left;
 
@@ -61,7 +67,7 @@ public class Blinky extends Sprite implements Ghost {
 
 		return move;
 	}
-
+	
 	@Override
 	public Move generateMove() {
 		Move move = Move.Stop;

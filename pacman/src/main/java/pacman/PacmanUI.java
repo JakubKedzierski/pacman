@@ -22,8 +22,8 @@ public class PacmanUI extends JFrame implements KeyListener {
 	private BoardPanel boardPanel = null;
 
 	private JLabel lblpoints = null;
-	//private JLabel lblranking = null;
-        private JTable rankingTable = null;
+	// private JLabel lblranking = null;
+	private JTable rankingTable = null;
 
 	private Timer timer;
 	private final int INITIAL_DELAY = 10;
@@ -59,12 +59,11 @@ public class PacmanUI extends JFrame implements KeyListener {
 		lblpoints.setBounds(970, 200, 217, 36);
 		boardPanel.add(lblpoints);
 
-                ranking.init();
-                rankingTable = ranking.prepareRankingTable();
-                rankingTable.setBounds(900, 250, 250, 176);
-                boardPanel.add(rankingTable);
-                
-                
+		ranking.init();
+		rankingTable = ranking.prepareRankingTable();
+		rankingTable.setBounds(900, 250, 250, 176);
+		boardPanel.add(rankingTable);
+
 		timer = new Timer();
 		timer.scheduleAtFixedRate(new gameLoop(), INITIAL_DELAY, PERIOD_INTERVAL);
 		setVisible(true);
@@ -80,11 +79,11 @@ public class PacmanUI extends JFrame implements KeyListener {
 			if (game.getPlayer().getLives() < 1) {
 
 				timer.cancel();
-                                timer.purge();
+				timer.purge();
 
 				GameOver gameOver = new GameOver(game.getPlayer().getPoints(), ranking);
-                                
-                                int i = 5;
+
+				int i = 5;
 
 			}
 		}
@@ -169,9 +168,10 @@ class BoardPanel extends JPanel {
 				}
 				if (board[i][j].contains(BoardField.Food)) {
 					g.setColor(Color.WHITE);
-					g.fillOval(j * RECT_OFFSET+3 + offset, i * RECT_OFFSET+3 + offset, RECT_WIDTH - 9, RECT_HEIGHT - 9);
+					g.fillOval(j * RECT_OFFSET + 3 + offset, i * RECT_OFFSET + 3 + offset, RECT_WIDTH - 9,
+							RECT_HEIGHT - 9);
 				}
-				
+
 				if (board[i][j].contains(BoardField.Player)) {
 					g.setColor(Color.YELLOW);
 					g.fillRect(j * RECT_OFFSET + offset, i * RECT_OFFSET + offset, RECT_WIDTH, RECT_HEIGHT);
@@ -192,7 +192,6 @@ class BoardPanel extends JPanel {
 					g.setColor(Color.MAGENTA);
 					g.fillRect(j * RECT_OFFSET + offset, i * RECT_OFFSET + offset, RECT_WIDTH, RECT_HEIGHT);
 				}
-
 
 			}
 		}
