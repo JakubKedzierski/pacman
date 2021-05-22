@@ -1,1 +1,0 @@
-memberSearchIndex = [{"p":"pacman","c":"Inky","l":"generateMove()"},{"p":"pacman","c":"Inky","l":"goToDefaultCorner()"},{"p":"pacman","c":"Inky","l":"move()"}]
