@@ -1,11 +1,12 @@
 package pacman;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Clyde extends Sprite implements Ghost {
 
-	public Clyde(int position_x, int position_y,ArrayList<BoardField>[][]  board, PacmanView pacman) {
+	public Clyde(int position_x, int position_y,List<BoardField>[][]  board, PacmanView pacman) {
 		super(position_x,position_y,board, pacman);
 		sprite = BoardField.Clyde;
 	}

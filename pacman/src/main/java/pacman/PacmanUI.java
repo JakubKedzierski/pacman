@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -137,11 +138,11 @@ class BoardPanel extends JPanel {
 	private static final int RECT_HEIGHT = RECT_WIDTH;
 	private static final int RECT_OFFSET = 21;
 
-	private ArrayList<BoardField>[][] board;
+	private List<BoardField>[][] board;
 	private int boardWidth;
 	private int boardHeight;
 
-	public BoardPanel(ArrayList<BoardField>[][] board, int boardWidth, int boardHeight) {
+	public BoardPanel(List<BoardField>[][] board, int boardWidth, int boardHeight) {
 		this.board = board;
 		this.boardWidth = boardWidth;
 		this.boardHeight = boardHeight;

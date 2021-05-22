@@ -1,6 +1,8 @@
 package pacman;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class BoardFactory {
 
@@ -13,12 +15,13 @@ public class BoardFactory {
 	public static int[] pinkyDefaultPosition = { 8, 17 };
 
 	@SuppressWarnings("unchecked")
-	public static ArrayList<BoardField>[][] createBoard(int boardChoice) {
+	public static List<BoardField>[][] createBoard(int boardChoice) {
 
-		ArrayList<BoardField>[][] board = new ArrayList[boardWidth][boardHeigth];
+		List<BoardField>[][] board = new List[boardWidth][boardHeigth];
+		
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[i].length; j++) {
-				board[i][j] = new ArrayList<BoardField>();
+				board[i][j] = Collections.synchronizedList(new ArrayList<BoardField>());
 			}
 		}
 		for (int i = 0; i < boardWidth; i++) {
@@ -68,7 +71,7 @@ public class BoardFactory {
 		return board;
 	}
 
-	public static void setDefaultPosition(ArrayList<BoardField>[][] board) {
+	public static void setDefaultPosition(List<BoardField>[][] board) {
 		board[playerDefaultPosition[0]][playerDefaultPosition[1]].clear();
 		board[playerDefaultPosition[0]][playerDefaultPosition[1]].add(BoardField.Player);
 
@@ -82,7 +85,7 @@ public class BoardFactory {
 		board[inkyDefaultPosition[0]][inkyDefaultPosition[1]].add(BoardField.Inky);
 	}
 
-	private static void createBoard1(ArrayList<BoardField>[][] board) {
+	private static void createBoard1(List<BoardField>[][] board) {
 		int[] row2 = { 2, 3, 5, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 30, 31, 32 };
 		for (int cell : row2) {
 			board[2][cell].add(BoardField.Obstacle);
@@ -122,7 +125,7 @@ public class BoardFactory {
 		board[13][20].add(BoardField.Obstacle);
 	}
 	
-	private static void createBoard2(ArrayList<BoardField>[][] board) {
+	private static void createBoard2(List<BoardField>[][] board) {
 		int[] row2 = { 2, 3, 5, 7, 8, 9, 10, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25, 30, 31, 32 };
 		for (int cell : row2) {
 			board[2][cell].add(BoardField.Obstacle);
@@ -137,20 +140,20 @@ public class BoardFactory {
 		for (int cell : row4) {
 			board[5][cell].add(BoardField.Obstacle);
 		}
-		int[] row5 = { 2, 3, 4, 5, 6,8, 9, 10, 16, 20, 28, 29, 30, 31, 32 };
+		int[] row5 = { 2, 3, 5, 6,8, 9, 10, 16, 20, 28, 29, 30, 31, 32 };
 		for (int cell : row5) {
 			board[7][cell].add(BoardField.Obstacle);
 		}
 
-		int[] row6 = { 2, 3, 4, 5, 6, 8, 9, 10, 12, 13, 14, 16, 20, 22, 23, 24,25, 26,27, 28, 29, 30, 31, 32 };
+		int[] row6 = { 2, 3,  5, 6, 8, 9, 10, 12, 13, 14, 16, 20, 22, 23, 24,25, 26,27, 28, 29, 30, 31, 32 };
 		for (int cell : row6) {
 			board[8][cell].add(BoardField.Obstacle);
 		}
-		int[] row7 = { 2, 3, 4, 5, 6, 8, 9, 10, 12, 13, 14, 16, 17, 18, 19, 20, 22, 23,24,25,26,30, 31, 32 };
+		int[] row7 = { 2, 3, 5, 6, 8, 9, 10, 12, 13, 14, 16, 17, 18, 19, 20, 22, 23,24,25,26,30, 31, 32 };
 		for (int cell : row7) {
 			board[9][cell].add(BoardField.Obstacle);
 		}
-		int[] row8 = { 2, 3, 4, 5, 6, 8, 9, 10, 12, 13, 14, 22, 23, 24, 26, 28, 29, 30, 31, 32 };
+		int[] row8 = { 2, 3, 5, 6, 8, 9, 10, 12, 13, 14, 22, 23, 24, 26, 28, 29, 30, 31, 32 };
 		for (int cell : row8) {
 			board[10][cell].add(BoardField.Obstacle);
 		}
@@ -163,7 +166,7 @@ public class BoardFactory {
 		board[13][20].add(BoardField.Obstacle);
 	}
 	
-	private static void createBoard3(ArrayList<BoardField>[][] board) {
+	private static void createBoard3(List<BoardField>[][] board) {
 		int[] row2 = { 2, 3, 5, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 30, 31, 32 };
 		for (int cell : row2) {
 			board[2][cell].add(BoardField.Obstacle);

@@ -1,6 +1,7 @@
 package pacman;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -8,7 +9,7 @@ import java.util.Random;
 public class Pinky extends Sprite implements Ghost {
 	
 	
-	public Pinky(int position_x, int position_y,ArrayList<BoardField>[][]  board, PacmanView pacman) {
+	public Pinky(int position_x, int position_y,List<BoardField>[][]  board, PacmanView pacman) {
 		super(position_x,position_y,board, pacman);
 		sprite = BoardField.Pinky;
 	}

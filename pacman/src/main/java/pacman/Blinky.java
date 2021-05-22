@@ -1,13 +1,14 @@
 package pacman;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Blinky extends Sprite implements Ghost {
 
 	private Player player;
 
-	protected Blinky(int position_x, int position_y, ArrayList<BoardField>[][] board, Player player, PacmanView pacman) {
+	protected Blinky(int position_x, int position_y, List<BoardField>[][] board, Player player, PacmanView pacman) {
 		super(position_x, position_y, board, pacman);
 		this.player = player;
 		sprite = BoardField.Blinky;

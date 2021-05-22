@@ -1,6 +1,7 @@
 package pacman;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import jdk.jfr.Unsigned;
@@ -19,7 +20,7 @@ public class Player extends Sprite {
 	
 	
 
-	public Player(int position_x, int position_y, ArrayList<BoardField>[][] board, PacmanView pacman) {
+	public Player(int position_x, int position_y, List<BoardField>[][] board, PacmanView pacman) {
 		super(position_x, position_y, board, pacman);
 		sprite = BoardField.Player;
 	}

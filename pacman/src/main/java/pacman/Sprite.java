@@ -1,6 +1,7 @@
 package pacman;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -9,8 +10,8 @@ import lombok.Getter;
 public abstract class Sprite implements Runnable {
 	protected Timer timer;
 	protected final int INITIAL_DELAY = 150;
-	protected final int PERIOD_INTERVAL = 150;
-	protected volatile ArrayList<BoardField>[][] board = null;
+	protected final int PERIOD_INTERVAL = 200;
+	protected volatile List<BoardField>[][] board = null;
 	@Getter
 	protected int position_x = 0;
 	@Getter
@@ -27,7 +28,7 @@ public abstract class Sprite implements Runnable {
 		timer.scheduleAtFixedRate(new gameLoop(), INITIAL_DELAY, PERIOD_INTERVAL);
 	}
 	
-	protected Sprite(int position_x, int position_y, ArrayList<BoardField>[][]  board,PacmanView pacman) {
+	protected Sprite(int position_x, int position_y, List<BoardField>[][]  board,PacmanView pacman) {
 		this.board = board;
 		this.position_x = position_x;
 		this.position_y = position_y;

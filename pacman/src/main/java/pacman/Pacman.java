@@ -1,6 +1,7 @@
 package pacman;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
@@ -9,7 +10,7 @@ import lombok.Getter;
 
 public class Pacman implements PacmanView {
 	@Getter
-	private volatile ArrayList<BoardField>[][] board = null;
+	private volatile List<BoardField>[][] board = null;
 	@Getter
 	private int boardWidth = BoardFactory.boardWidth;
 	@Getter
@@ -22,7 +23,7 @@ public class Pacman implements PacmanView {
 
 	public Pacman() {
 
-		board = BoardFactory.createBoard(1);
+		board = BoardFactory.createBoard(2);
 		BoardFactory.setDefaultPosition(board);
 		
 		sprites = new ArrayList<Sprite>();
