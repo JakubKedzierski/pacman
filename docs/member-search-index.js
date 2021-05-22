@@ -1,1 +1,1 @@
-memberSearchIndex = [{"p":"pacman","c":"Blinky","l":"generateMove()"},{"p":"pacman","c":"Blinky","l":"goToDefaultCorner()"},{"p":"pacman","c":"Blinky","l":"move()"}]
+memberSearchIndex = [{"p":"pacman","c":"Move","l":"Down"},{"p":"pacman","c":"Move","l":"Left"},{"p":"pacman","c":"Move","l":"Right"},{"p":"pacman","c":"Move","l":"Stop"},{"p":"pacman","c":"Move","l":"Up"},{"p":"pacman","c":"Move","l":"valueOf(String)","url":"valueOf(java.lang.String)"},{"p":"pacman","c":"Move","l":"values()"}]
