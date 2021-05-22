@@ -5,40 +5,73 @@ import java.util.List;
 import java.util.Random;
 
 public class Inky extends Sprite implements Ghost {
-
-	protected Inky(int position_x, int position_y, List<BoardField>[][] board, PacmanView pacman) {
+	private boolean defaultCornerFlag = false;
+	private Sprite ghostToPursue;
+	
+	protected Inky(int position_x, int position_y, List<BoardField>[][] board, PacmanView pacman,Sprite ghostToPursue) {
 		super(position_x, position_y, board, pacman);
 		sprite = BoardField.Inky;
+		this.ghostToPursue = ghostToPursue;
 	}
 
 	@Override
 	public synchronized void move() {
-		Random rand = new Random();
-		int dir = rand.nextInt(4);
 		Move move = Move.Stop;
-		switch(dir) {
-		case 0:
-			move = Move.Down;
-			break;
-		case 1:
-			move = Move.Up;
-			break;
-		case 2:
-			move = Move.Left;
-			break;
-		case 3:
-			move = Move.Right;
-			break;
+		if (!defaultCornerFlag) {
+			move = goToDefaultCorner();
+		} else {
+			move = generateMove();
 		}
-		
-		move(move,BoardField.Inky);
-		
+
+		if (move == Move.Stop || !checkMove(move)) {
+			
+			while (!checkMove(move)) {
+				Random rand = new Random();
+				int dir = rand.nextInt(4);
+				switch (dir) {
+				case 0:
+					move = Move.Down;
+					break;
+				case 1:
+					move = Move.Up;
+					break;
+				case 2:
+					move = Move.Left;
+					break;
+				case 3:
+					move = Move.Right;
+					break;
+				}
+			}
+		}
+
+		move(move, BoardField.Inky);
+
+	}
+
+	public Move goToDefaultCorner() {
+		Move move = Move.Down;
+
+		if (position_x > 10) {
+			defaultCornerFlag = true;
+		}
+		if(position_x <= 7) {
+			move = Move.Left;
+		}
+
+		return move;
 	}
 
 	@Override
 	public Move generateMove() {
-		return null;
-		
+		Random rand = new Random();
+		int randDir = rand.nextInt(2);
+		Move move = Move.Stop;
+		if(randDir == 1) {
+			move = ghostToPursue.getDir();
+		}
+		return move;
+
 	}
 
 }

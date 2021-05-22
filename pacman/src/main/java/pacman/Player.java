@@ -13,6 +13,7 @@ public class Player extends Sprite {
 
 	@Getter
 	int points = 0;
+	@Getter
 	private Move direction = Move.Stop;
 	private Move previousMove = Move.Stop;
 	@Getter

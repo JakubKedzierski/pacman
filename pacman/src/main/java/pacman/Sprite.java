@@ -18,6 +18,8 @@ public abstract class Sprite implements Runnable {
 	protected int position_y = 0;
 	protected int boardWidth = BoardFactory.boardWidth;
 	protected int boardHeight = BoardFactory.boardHeigth;
+	@Getter
+	protected Move dir;
 	protected BoardField sprite;
 	PacmanView pacman = null;
 	
