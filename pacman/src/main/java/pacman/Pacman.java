@@ -2,6 +2,7 @@ package pacman;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
@@ -27,7 +28,9 @@ public class Pacman implements PacmanView {
 
 
 	public Pacman() {
-
+		Random rand = new Random();
+		int boardChoice = rand.nextInt(3);
+		System.out.println(boardChoice);
 		board = BoardFactory.createBoard(2);
 		BoardFactory.setDefaultPosition(board);
 		

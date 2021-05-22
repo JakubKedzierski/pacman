@@ -50,7 +50,11 @@ public class Pinky extends Sprite implements Ghost {
 
 		move(move, BoardField.Pinky);
 	}
-
+	
+	/**
+	 * Ruch do domyslnego rogu na poczatku gry
+	 * @return wybrany ruch do rogu
+	 */
 	public Move goToDefaultCorner() {
 		Move move = Move.Right;
 
@@ -60,7 +64,10 @@ public class Pinky extends Sprite implements Ghost {
 
 		return move;
 	}
-
+	
+	/**
+	 * Generowanie ruchu w danej pozycji dla duszka
+	 */
 	@Override
 	public Move generateMove() {
 		Move move = Move.Stop;

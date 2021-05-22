@@ -16,6 +16,9 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 
+/**
+ * Klasa reprezentujaca graficzny intefejs uzytkownika, ktory jest odzielony od glownej czesci aplikacji i od logiki gry
+ */
 public class PacmanUI extends JFrame implements KeyListener {
 
 	private Pacman game = null;
@@ -68,7 +71,10 @@ public class PacmanUI extends JFrame implements KeyListener {
 		timer.scheduleAtFixedRate(new gameLoop(), INITIAL_DELAY, PERIOD_INTERVAL);
 		setVisible(true);
 	}
-
+	
+	/**
+	 * Klasa aktualizujaca stan planszy
+	 */
 	private class gameLoop extends TimerTask {
 
 		@Override
@@ -95,19 +101,32 @@ public class PacmanUI extends JFrame implements KeyListener {
 		PacmanUI gameUI = new PacmanUI(pacman);
 		pacman.play();
 	}
-
+	
+	/**
+	 * Ruch zadany od u¿ytkownika
+	 */
 	public void keyTyped(KeyEvent e) {
 		movePacman(e);
 	}
 
+	/**
+	 * Ruch zadany od u¿ytkownika
+	 */
 	public void keyPressed(KeyEvent e) {
 		movePacman(e);
 	}
 
+	/**
+	 * Ruch zadany od u¿ytkownika
+	 */
 	public void keyReleased(KeyEvent e) {
 		movePacman(e);
 	}
-
+	
+	/**
+	 * Otrzymanie ruchu od uzytkownika
+	 * @param e - nacisniety klawisz
+	 */
 	public void movePacman(KeyEvent e) {
 		int keyCode = e.getKeyCode();
 		switch (keyCode) {
@@ -131,6 +150,10 @@ public class PacmanUI extends JFrame implements KeyListener {
 	}
 }
 
+/**
+ * Klasa reprezentujaca graficzny wyglad planszy/labiryntu
+ *
+ */
 class BoardPanel extends JPanel {
 
 	private static final int RECT_WIDTH = 20;
@@ -147,10 +170,10 @@ class BoardPanel extends JPanel {
 		this.boardHeight = boardHeight;
 	}
 
-	BoardPanel() {
-
-	}
-
+	
+	/**
+	 * Rysowanie aktualnej tabeli
+	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		int offset = 40;

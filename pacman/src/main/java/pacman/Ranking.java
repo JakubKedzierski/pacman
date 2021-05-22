@@ -10,8 +10,11 @@ import java.util.Scanner;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-/*------------------------------------------------------------------------------------*/
-
+/**
+ * 
+ * Pozycja w rankingu
+ *
+ */
 class RankField {
 
 	public String playerName;
@@ -26,17 +29,20 @@ class RankField {
 		this.points = points;
 	}
 
-        @Override
+	@Override
 	public String toString() {
 
 		return playerName + " " + String.valueOf(points) + "\n";
 	}
-        
+
 }
 
-/*------------------------------------------------------------------------------------*/
-
-public class Ranking implements RankingInterface{
+/**
+ * 
+ * Ranking ktory zostaje wyswietlony po zakonczeniu gry
+ *
+ */
+public class Ranking implements RankingInterface {
 
 	@Getter
 	private final ArrayList<RankField> rankList = new ArrayList<RankField>();
@@ -46,36 +52,39 @@ public class Ranking implements RankingInterface{
 		rankList.add(new RankField(name, points));
 		acceptChanges();
 	}
-        
-        /*------------------------------------------------------------------------------------*/
-        
-        private void sortRanking() {
-            
-            for (int i = 0; i < 9 && i < rankList.size() -1; i++) {
-                for(int j = 0; j <= i; j++) {
-                    
-                   if(rankList.get(j+1).points > rankList.get(j).points) {
-                    
-                       RankField tmpRankField = rankList.get(j);
-                       rankList.set(j, rankList.get(j+1));
-                       rankList.set(j+1, tmpRankField);
-                       
-                    }
-                }
-            }
-        }
-        
-        /*------------------------------------------------------------------------------------*/
-        
-        private void acceptChanges() {
-            
-            sortRanking();
-            saveFile();
-            init();
-        }
 
-	/*------------------------------------------------------------------------------------*/
+	/**
+	 * Sortowanie rankingu wedlug najlepszego wyniku
+	 */
+	private void sortRanking() {
 
+		for (int i = 0; i < 9 && i < rankList.size() - 1; i++) {
+			for (int j = 0; j <= i; j++) {
+
+				if (rankList.get(j + 1).points > rankList.get(j).points) {
+
+					RankField tmpRankField = rankList.get(j);
+					rankList.set(j, rankList.get(j + 1));
+					rankList.set(j + 1, tmpRankField);
+
+				}
+			}
+		}
+	}
+
+	/**
+	 * Zapisanie rankingu do pliku
+	 */
+	private void acceptChanges() {
+
+		sortRanking();
+		saveFile();
+		init();
+	}
+
+	/** Zapis do pliku
+	 * 
+	 */
 	private void saveFile() {
 
 		File fileObject = new File("Ranking.sav");
@@ -100,9 +109,10 @@ public class Ranking implements RankingInterface{
 			System.out.println("Błąd zapisu do pliku!");
 		}
 	}
-
-	/*------------------------------------------------------------------------------------*/
-
+	
+	/**
+	 * Tworzenie rankingu gdy w katalogu uzytkownika nie ma zadnego rankingu
+	 */
 	public void init() {
 
 		File fileObject = new File("Ranking.sav");
@@ -125,63 +135,45 @@ public class Ranking implements RankingInterface{
 		} catch (IOException e) {
 			System.out.println("Błąd odczytu!");
 		}
-                
-                sortRanking();
+
+		sortRanking();
 	}
 
-	/*------------------------------------------------------------------------------------*/
 
-	/*public String prepareRanking() {
+	/**
+	 * Przygotowanie rankingu
+	 * @return tabela z najlepszymi wynikami
+	 */
+	public JTable prepareRankingTable() {
 
-		String text = "<html>Ranking:<br/>";
+		String[] columnNames = { "Miejsce", "Nazwa", "Punkty" };
+
+		String[][] rowData = new String[11][3];
+
+		rowData[0][0] = "Miejsce";
+		rowData[0][1] = "Nazwa";
+		rowData[0][2] = "Punkty";
 
 		for (int i = 0; i < rankList.size() && i < 10; i++) {
 
-			text += String.valueOf(i + 1) + ". ";
-			text += rankList.get(i).toString();
-			text += "<br/>";
+			rowData[i + 1][0] = String.valueOf(i + 1);
+			rowData[i + 1][1] = rankList.get(i).playerName;
+			rowData[i + 1][2] = String.valueOf(rankList.get(i).points);
 		}
-		text += "</html>";
 
-		return text;
-	}*/
-        
-        /*------------------------------------------------------------------------------------*/
-        
-        public JTable prepareRankingTable() {
-            
-            String[] columnNames = 
-                        {"Miejsce",
-                        "Nazwa",
-                        "Punkty"};
-            
-            String[][] rowData = new String[11][3];
-    
-            rowData[0][0] =  "Miejsce";
-            rowData[0][1] =  "Nazwa";
-            rowData[0][2] =  "Punkty";
-            
-            for (int i = 0; i < rankList.size() && i < 10; i++) {
-                
-                rowData[i+1][0] =  String.valueOf(i+1);
-                rowData[i+1][1] =  rankList.get(i).playerName;
-                rowData[i+1][2] =  String.valueOf(rankList.get(i).points);
-            }
+		JTable rankTable = new JTable(rowData, columnNames) {
 
-            JTable rankTable = new JTable(rowData, columnNames){
-                
-                private static final long serialVersionUID = 1L;
+			private static final long serialVersionUID = 1L;
 
-                public boolean isCellEditable(int row, int column) {                
-                        return false;               
-                };
-            };
-            
-            rankTable.setCellSelectionEnabled(false);
-            rankTable.setFocusable(false);
-            
-            return rankTable;
-        }
-        
-        
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			};
+		};
+
+		rankTable.setCellSelectionEnabled(false);
+		rankTable.setFocusable(false);
+
+		return rankTable;
+	}
+
 }

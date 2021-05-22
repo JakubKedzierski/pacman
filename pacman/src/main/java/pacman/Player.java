@@ -9,6 +9,11 @@ import jdk.jfr.Unsigned;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * 
+ * Klasa reprezentujaca gracza
+ *
+ */
 public class Player extends Sprite {
 
 	@Getter
@@ -25,7 +30,11 @@ public class Player extends Sprite {
 		super(position_x, position_y, board, pacman);
 		sprite = BoardField.Player;
 	}
-
+	
+	/**
+	 * Ustawienie ruchu oraz poprzedniego ruchu tak aby uczucie poruszania sie po planszy bylo bardziej przyjazne dla uzytkownika
+	 * @param move - ruch do wykonania
+	 */
 	public void setDirection(Move move) {
 		if (direction == Move.Right)
 			previousMove = Move.Right;
@@ -39,7 +48,9 @@ public class Player extends Sprite {
 	}
 	
 
-
+	/**
+	 * Wykonanie ruchu - ruch jest generowany poprzez timer z klasy bazowej - sprite
+	 */
 	@Override
 	public synchronized void move() {
 		if (!checkMove(direction))
@@ -54,6 +65,7 @@ public class Player extends Sprite {
 			lives--;
 			if(lives >=0) {
 				pacman.restartGame();
+				return;
 			}
 		}
 
@@ -62,6 +74,18 @@ public class Player extends Sprite {
 		if (board[position_x][position_y].contains(BoardField.Food)) {
 			points += 10;
 			board[position_x][position_y].remove(BoardField.Food);
+		}
+		
+		a = board[position_x][position_y].contains(BoardField.Blinky);
+		b = board[position_x][position_y].contains(BoardField.Clyde);
+		c = board[position_x][position_y].contains(BoardField.Inky);
+		d = board[position_x][position_y].contains(BoardField.Pinky);
+
+		if (a | b | c | d) {
+			lives--;
+			if(lives >=0) {
+				pacman.restartGame();
+			}
 		}
 	}
 

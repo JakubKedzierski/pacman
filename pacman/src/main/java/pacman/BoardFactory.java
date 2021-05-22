@@ -18,7 +18,12 @@ public class BoardFactory {
 	public static int[] inkyDefaultPosition = { 8, 18 };
 	public static int[] clydeDefaultPosition = { 8, 19 };
 	public static int[] pinkyDefaultPosition = { 8, 17 };
-
+	
+	/**
+	 * Tworzenie planszy
+	 * @param boardChoice - wybor planszy
+	 * @return - wybrana wygeneorwana plansza
+	 */
 	@SuppressWarnings("unchecked")
 	public static List<BoardField>[][] createBoard(int boardChoice) {
 
@@ -39,13 +44,13 @@ public class BoardFactory {
 			board[boardWidth - 1][i].add(BoardField.Obstacle);
 		}
 		switch (boardChoice) {
-		case 1:
+		case 0:
 			createBoard1(board);
 			break;
-		case 2:
+		case 1:
 			createBoard2(board);
 			break;
-		case 3:
+		case 2:
 			createBoard3(board);
 			break;
 		default:
@@ -75,7 +80,11 @@ public class BoardFactory {
 		board[8][19].remove(BoardField.Food);
 		return board;
 	}
-
+	
+	/**
+	 * Domyslnie ustawienie spritow na planszy
+	 * @param board - plansza po modyfikacji
+	 */
 	public static void setDefaultPosition(List<BoardField>[][] board) {
 		board[playerDefaultPosition[0]][playerDefaultPosition[1]].clear();
 		board[playerDefaultPosition[0]][playerDefaultPosition[1]].add(BoardField.Player);
@@ -89,7 +98,11 @@ public class BoardFactory {
 		board[inkyDefaultPosition[0]][inkyDefaultPosition[1]].clear();
 		board[inkyDefaultPosition[0]][inkyDefaultPosition[1]].add(BoardField.Inky);
 	}
-
+	
+	/**
+	 * Tworzenie pierwszego zestawu planszy
+	 * @param board - stworzona plansza
+	 */
 	private static void createBoard1(List<BoardField>[][] board) {
 		int[] row2 = { 2, 3, 5, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 30, 31, 32 };
 		for (int cell : row2) {
@@ -130,6 +143,10 @@ public class BoardFactory {
 		board[13][20].add(BoardField.Obstacle);
 	}
 	
+	/**
+	 * Tworzenie drugiego zestawu planszy
+	 * @param board - stworzona plansza
+	 */
 	private static void createBoard2(List<BoardField>[][] board) {
 		int[] row2 = { 2, 3, 5, 7, 8, 9, 10, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25, 30, 31, 32 };
 		for (int cell : row2) {
@@ -171,17 +188,21 @@ public class BoardFactory {
 		board[13][20].add(BoardField.Obstacle);
 	}
 	
+	/**
+	 * Tworzenie trzeciego zestawu planszy
+	 * @param board - stworzona plansza
+	 */
 	private static void createBoard3(List<BoardField>[][] board) {
 		int[] row2 = { 2, 3, 5, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 30, 31, 32 };
 		for (int cell : row2) {
 			board[2][cell].add(BoardField.Obstacle);
 		}
-		int[] row3 = { 2, 3, 5, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31,
+		int[] row3 = { 2, 3, 5, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 20, 21, 22, 23, 24, 30, 31,
 				32 };
 		for (int cell : row3) {
 			board[4][cell].add(BoardField.Obstacle);
 		}
-		int[] row4 = { 2, 3, 5, 10, 12, 13, 14, 15, 16, 17, 18, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31, 32 };
+		int[] row4 = { 2, 3, 5, 10, 12, 13, 14, 15, 16, 17, 18, 20, 21, 22, 23, 24, 28, 30, 31, 32 };
 		for (int cell : row4) {
 			board[5][cell].add(BoardField.Obstacle);
 		}
@@ -190,20 +211,20 @@ public class BoardFactory {
 			board[7][cell].add(BoardField.Obstacle);
 		}
 
-		int[] row6 = { 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 13, 14, 16, 20, 22, 23, 24, 26, 28, 29, 30, 31, 32 };
+		int[] row6 = { 1, 2, 3, 6, 8, 9, 10, 12, 13, 14, 16, 20, 22, 23, 24, 26, 28, 29, 30, 31, 32 };
 		for (int cell : row6) {
 			board[8][cell].add(BoardField.Obstacle);
 		}
-		int[] row7 = { 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 13, 14, 16, 17, 18, 19, 20, 22, 23, 24, 26, 28, 29, 30, 31, 32 };
+		int[] row7 = { 1, 2, 3, 6, 8, 9, 10, 12, 13, 14, 16, 17, 18, 19, 20, 22,  28, 29, 30, 31, 32 };
 		for (int cell : row7) {
 			board[9][cell].add(BoardField.Obstacle);
 		}
-		int[] row8 = { 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 13, 14, 22, 23, 24, 26, 28, 29, 30, 31, 32 };
+		int[] row8 = { 1, 2, 3, 6, 8, 9, 10, 12, 13, 14, 22, 23, 24, 26, 28, 29, 30, 31, 32 };
 		for (int cell : row8) {
 			board[10][cell].add(BoardField.Obstacle);
 		}
 
-		int[] row9 = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31, 32 };
+		int[] row9 = { 2, 3, 4, 5, 6, 7, 8, 13, 14, 15, 16, 20, 21, 22, 23, 24, 25, 30, 31, 32 };
 		for (int cell : row9) {
 			board[12][cell].add(BoardField.Obstacle);
 		}

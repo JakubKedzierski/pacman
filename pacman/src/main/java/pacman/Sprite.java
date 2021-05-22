@@ -7,6 +7,11 @@ import java.util.TimerTask;
 
 import lombok.Getter;
 
+/**
+ * 
+ * Klasa reprezentujaca dowolna postac na planszy - moze to byc zarowno gracz jak i duch
+ *
+ */
 public abstract class Sprite implements Runnable {
 	protected Timer timer;
 	protected final int INITIAL_DELAY = 150;
@@ -24,7 +29,10 @@ public abstract class Sprite implements Runnable {
 	PacmanView pacman = null;
 	
 	protected int[] defaultPosition = new int[2];
-
+	
+	/**
+	 * Kazda z postaci na planszy uruchamia wlasnego timera ktory decyduje o wykonaniu ruchu w danym momencie
+	 */
 	public void run() {
 		timer = new Timer();
 		timer.scheduleAtFixedRate(new gameLoop(), INITIAL_DELAY, PERIOD_INTERVAL);
@@ -46,7 +54,13 @@ public abstract class Sprite implements Runnable {
 			move();
 		}
 	}
-
+	
+	/**
+	 * {@summary informuje o mozliwosci wykonaniu ruchu}
+	 * 
+	 * @param move - ruch jaki ma zostac sprawdzony
+	 * @return mozliwosc wykonania ruchu
+	 */
 	protected synchronized boolean checkMove(Move move) {
 		switch (move) {
 		case Up:
@@ -86,6 +100,9 @@ public abstract class Sprite implements Runnable {
 		return false;
 	}
 	
+	/**
+	 * Metoda umo¿liwiaj¹ce ustawienie spritow na domyslnych pozycjach
+	 */
 	public synchronized void setDefaultPosition() {
 		timer.cancel();
 		timer.purge();
@@ -97,11 +114,21 @@ public abstract class Sprite implements Runnable {
 		position_y = defaultPosition[1];
 	}
 	
+	/**
+	 * Restartowanie gry - po restarcie jest chwile opoznienia i dopiero po chwili mozemy rozpoczac gre
+	 */
 	public void restart() {
 		timer = new Timer();
 		timer.scheduleAtFixedRate(new gameLoop(), INITIAL_DELAY, PERIOD_INTERVAL);
 	}
-
+	
+	/**
+	 * Metoda pozwalajaca na wykonanie ruchu. Ze wzgledu na koniecznosc dostepu do wspolnego zasobu planszy - konieczna jest synchronizacja metody
+	 * oraz uzycie Listy bezpiecznej w uzyciu wielowatkowym
+	 * 
+	 * @param move - ruch do wykonania
+	 * @param sprite - typ pola jakie ma zostac zmienione (sprite ktory wywoluje ruch)
+	 */
 	protected synchronized void move(Move move, BoardField sprite) {
 		if (checkMove(move)) {
 			switch (move) {
@@ -154,10 +181,6 @@ public abstract class Sprite implements Runnable {
 
 	}
 	
-	public ArrayList<Move> getPossibleMoves(){
-		ArrayList<Move> moves = new ArrayList<Move>();
-		return moves;
-	}
 
 	protected abstract void move();
 

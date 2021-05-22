@@ -50,7 +50,6 @@ public class Blinky extends Sprite implements Ghost {
 			}
 		}
 		
-		dir = move;
 		move(move, BoardField.Blinky);
 
 	}

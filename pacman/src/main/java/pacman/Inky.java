@@ -53,7 +53,11 @@ public class Inky extends Sprite implements Ghost {
 		move(move, BoardField.Inky);
 
 	}
-
+	
+	/**
+	 * Ruch do domyslnego rogu
+	 * @return odpowiedni ruch
+	 */
 	public Move goToDefaultCorner() {
 		Move move = Move.Down;
 
@@ -66,11 +70,15 @@ public class Inky extends Sprite implements Ghost {
 
 		return move;
 	}
-
+	
+	/**
+	 * Inky nasladuje ruchy przekazanego sprite
+	 */
 	@Override
 	public Move generateMove() {
 		Random rand = new Random();
 		int randDir = rand.nextInt(2);
+		randDir = 1;
 		Move move = Move.Stop;
 		if(randDir == 1) {
 			move = ghostToPursue.getDir();

@@ -31,7 +31,11 @@ public class Clyde extends Sprite implements Ghost {
 		move(move, BoardField.Clyde);
 
 	}
-
+	
+	/**
+	 * Ruch do domyœlnego rogu
+	 * @return wybrany ruch
+	 */
 	public Move goToDefaultCorner() {
 		Move move = Move.Up;
 
