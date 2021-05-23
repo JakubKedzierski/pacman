@@ -21,7 +21,7 @@ public class GameOver extends JFrame {
         JTextField playerNameField = null;
         JButton saveButton = null;
         
-        public boolean waitForClose;
+        public boolean waitForClose = true;
         
 	public GameOver(final int points, final RankingInterface ranking) {
 		
@@ -32,11 +32,11 @@ public class GameOver extends JFrame {
             setLocationRelativeTo(null);
             setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
             
-            JLabel lblNewLabel_2 = new JLabel("Naleleży podać nazwę gracza:");
+            JLabel lblNewLabel_2 = new JLabel("Należy podać nazwę gracza:");
             lblNewLabel_2.setBounds(10, 10, 300, 36);
             dialogPanel.add(lblNewLabel_2);
             
-            playerNameField = new JTextField("Przykładowy Nick użytkownika");
+            playerNameField = new JTextField("Przykładowy Nick Użytkownika");
             playerNameField.setBounds(10, 80, 300, 50);
             dialogPanel.add(playerNameField);
             
@@ -47,7 +47,8 @@ public class GameOver extends JFrame {
             saveButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                    
-                    ranking.addRankField(playerNameField.getText(), points);
+                    ranking.addRankField(playerNameField.getText().replaceAll("\\s",""), points);
+                    waitForClose = false;
                     dispose();
                 }
              } );
@@ -57,8 +58,6 @@ public class GameOver extends JFrame {
             this.getContentPane().add(dialogPanel);
             this.setResizable(false);
             setVisible(true);
-            
-            waitForClose = true;
 	}
         
 }

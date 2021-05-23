@@ -31,6 +31,16 @@ public class Player extends Sprite {
 		sprite = BoardField.Player;
 	}
 	
+        /**
+	 * Prosta metoda ustawiająca życie oraz punkty gracza
+	 * @param lives - ilość żyć,
+         * @param points - ilość punktów
+	 */
+        public void setVals(int lives, int points) {
+            this.points = points;
+            this.lives = lives;
+        }
+        
 	/**
 	 * Ustawienie ruchu oraz poprzedniego ruchu tak aby uczucie poruszania sie po planszy bylo bardziej przyjazne dla uzytkownika
 	 * @param move - ruch do wykonania
@@ -73,7 +83,7 @@ public class Player extends Sprite {
                 
                 points += 1;
 		if (board[position_x][position_y].contains(BoardField.Food)) {
-			points += 10;
+			points += 25;
 			board[position_x][position_y].remove(BoardField.Food);
 		}
 		

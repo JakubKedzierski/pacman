@@ -25,7 +25,6 @@ public class PacmanUI extends JFrame implements KeyListener {
 	private BoardPanel boardPanel = null;
 
 	private JLabel lblpoints = null;
-	// private JLabel lblranking = null;
 	private JTable rankingTable = null;
 
 	private Timer timer;
@@ -62,7 +61,6 @@ public class PacmanUI extends JFrame implements KeyListener {
 		lblpoints.setBounds(955, 100, 217, 36);
 		boardPanel.add(lblpoints);
 
-		ranking.init();
 		rankingTable = ranking.prepareRankingTable();
 		rankingTable.setBounds(895, 200, 250, 176);
 		boardPanel.add(rankingTable);
@@ -76,27 +74,36 @@ public class PacmanUI extends JFrame implements KeyListener {
 	 * Klasa aktualizujaca stan planszy
 	 */
 	private class gameLoop extends TimerTask {
-
+            
+            private boolean over = false;
+            
 		@Override
 		public void run() {
-			boardPanel.repaint();
-			lblpoints.setText("Życia: " + String.valueOf(game.getPlayer().lives) + ",  Punkty: " + String.valueOf(game.getPlayer().getPoints()));
+                    
+                    boardPanel.repaint();
+                    lblpoints.setText("Życia: " + String.valueOf(game.getPlayer().lives) + ",  Punkty: " + String.valueOf(game.getPlayer().getPoints()));
 
-			if (game.getPlayer().getLives() < 1) {
-
-				timer.cancel();
-				timer.purge();
-
-				GameOver gameOver = new GameOver(game.getPlayer().getPoints(), ranking);
-			}
+                    if (game.getPlayer().getLives() < 1 && !over) gameOverDetected();
 		}
+                
+                private void gameOverDetected() {
+                    
+                    over = true;
+                    GameOver gameOver = new GameOver(game.getPlayer().getPoints(), ranking);
+                    while(gameOver.waitForClose) {
+                        game.restartGame();
+                    }
+                    
+                    over = false;
+                    game.getPlayer().setVals(3, 0);
+                }
 	}
 
 	public static void main(String[] args) {
 
-		Pacman pacman = new Pacman();
-		PacmanUI gameUI = new PacmanUI(pacman);
-		pacman.play();
+            Pacman pacman = new Pacman();
+            PacmanUI gameUI = new PacmanUI(pacman);
+            pacman.play();
 	}
 	
 	/**

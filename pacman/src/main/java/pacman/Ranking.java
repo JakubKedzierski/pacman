@@ -113,7 +113,7 @@ public class Ranking implements RankingInterface {
 	/**
 	 * Tworzenie rankingu gdy w katalogu uzytkownika nie ma zadnego rankingu
 	 */
-	public void init() {
+	private void init() {
 
 		File fileObject = new File("Ranking.sav");
 		rankList.clear();
@@ -135,8 +135,6 @@ public class Ranking implements RankingInterface {
 		} catch (IOException e) {
 			System.out.println("Błąd odczytu!");
 		}
-
-		sortRanking();
 	}
 
 
@@ -146,6 +144,8 @@ public class Ranking implements RankingInterface {
 	 */
 	public JTable prepareRankingTable() {
 
+                init();
+            
 		String[] columnNames = { "Miejsce", "Nazwa", "Punkty" };
 
 		String[][] rowData = new String[11][3];

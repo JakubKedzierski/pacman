@@ -14,7 +14,7 @@ import lombok.Getter;
  * Glowna klasa odpowiedzialna za przebieg gry
  *
  */
-public class Pacman implements PacmanView {
+public final class Pacman implements PacmanView {
 	@Getter
 	private volatile List<BoardField>[][] board = null;
 	@Getter
@@ -28,12 +28,9 @@ public class Pacman implements PacmanView {
 
 
 	public Pacman() {
-		Random rand = new Random();
-		int boardChoice = rand.nextInt(3);
-		System.out.println(boardChoice);
-		board = BoardFactory.createBoard(boardChoice);
-		BoardFactory.setDefaultPosition(board);
 		
+                resetBoard();
+            
 		sprites = new ArrayList<Sprite>();
 		this.player = new Player(BoardFactory.playerDefaultPosition[0],BoardFactory.playerDefaultPosition[1],board,this);
 		sprites.add(this.player);
@@ -44,6 +41,14 @@ public class Pacman implements PacmanView {
 		sprites.add(new Inky(BoardFactory.inkyDefaultPosition[0],BoardFactory.inkyDefaultPosition[1],board,this,blinky));
 
 	}
+        
+        public void resetBoard() {
+            Random rand = new Random();
+            int boardChoice = rand.nextInt(3);
+            System.out.println(boardChoice);
+            board = BoardFactory.createBoard(boardChoice);
+            BoardFactory.setDefaultPosition(board);
+        }
 	
 	/**
 	 * Rozpoczecie gry - start glownej petli
