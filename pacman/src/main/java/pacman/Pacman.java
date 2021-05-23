@@ -31,7 +31,7 @@ public class Pacman implements PacmanView {
 		Random rand = new Random();
 		int boardChoice = rand.nextInt(3);
 		System.out.println(boardChoice);
-		board = BoardFactory.createBoard(2);
+		board = BoardFactory.createBoard(boardChoice);
 		BoardFactory.setDefaultPosition(board);
 		
 		sprites = new ArrayList<Sprite>();
