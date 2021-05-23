@@ -59,18 +59,13 @@ public class Ranking implements RankingInterface {
 	private void sortRanking() {
 
 		for (int i = 0; i < rankList.size() -1; i++) {
-			for (int j = 0; j < rankList.size() -1; j++) {
+                    for (int j = 0; j < rankList.size() -1; j++) {
 
-				if (rankList.get(j + 1).points > rankList.get(j).points) {
+                        if (rankList.get(j + 1).points > rankList.get(j).points) {
 
-                                    Collections.swap(rankList, j, j+1);
-                                    
-					/*RankField tmpRankField = rankList.get(j);
-					rankList.set(j, rankList.get(j + 1));
-					rankList.set(j + 1, tmpRankField);*/
-
-				}
-			}
+                            Collections.swap(rankList, j, j+1);
+                        }
+                    }
 		}
 	}
 
