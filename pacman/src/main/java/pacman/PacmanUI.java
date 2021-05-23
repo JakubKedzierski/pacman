@@ -39,32 +39,32 @@ public class PacmanUI extends JFrame implements KeyListener {
 		this.setResizable(false);
 		this.game = pacman;
 		setTitle("Pacman");
-		setSize(1200, 550);
+		setSize(1200, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		addKeyListener(this);
 
 		boardPanel = new BoardPanel(game.getBoard(), pacman.getBoardWidth(), pacman.getBoardHeigth());
-		this.getContentPane().setLocation(100, 100);
+		this.getContentPane().setLocation(50, 100);
 		this.getContentPane().add(boardPanel);
 		boardPanel.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Ruch mo\u017Cesz wykona\u0107\r\n za pomoc\u0105 strza\u0142ek");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(836, 74, 357, 58);
+		lblNewLabel.setBounds(836, 25, 357, 58);
 		boardPanel.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Spacja powoduje zatrzymanie ruchu");
-		lblNewLabel_1.setBounds(901, 127, 300, 36);
+		lblNewLabel_1.setBounds(890, 60, 300, 36);
 		boardPanel.add(lblNewLabel_1);
 
 		lblpoints = new JLabel();
-		lblpoints.setBounds(970, 200, 217, 36);
+		lblpoints.setBounds(955, 100, 217, 36);
 		boardPanel.add(lblpoints);
 
 		ranking.init();
 		rankingTable = ranking.prepareRankingTable();
-		rankingTable.setBounds(900, 250, 250, 176);
+		rankingTable.setBounds(895, 200, 250, 176);
 		boardPanel.add(rankingTable);
 
 		timer = new Timer();
@@ -80,7 +80,7 @@ public class PacmanUI extends JFrame implements KeyListener {
 		@Override
 		public void run() {
 			boardPanel.repaint();
-			lblpoints.setText("Punkty: " + String.valueOf(game.getPlayer().getPoints()));
+			lblpoints.setText("Å»ycia: " + String.valueOf(game.getPlayer().lives) + ",  Punkty: " + String.valueOf(game.getPlayer().getPoints()));
 
 			if (game.getPlayer().getLives() < 1) {
 
@@ -88,9 +88,6 @@ public class PacmanUI extends JFrame implements KeyListener {
 				timer.purge();
 
 				GameOver gameOver = new GameOver(game.getPlayer().getPoints(), ranking);
-
-				int i = 5;
-
 			}
 		}
 	}
@@ -103,21 +100,21 @@ public class PacmanUI extends JFrame implements KeyListener {
 	}
 	
 	/**
-	 * Ruch zadany od u¿ytkownika
+	 * Ruch zadany od uï¿½ytkownika
 	 */
 	public void keyTyped(KeyEvent e) {
 		movePacman(e);
 	}
 
 	/**
-	 * Ruch zadany od u¿ytkownika
+	 * Ruch zadany od uï¿½ytkownika
 	 */
 	public void keyPressed(KeyEvent e) {
 		movePacman(e);
 	}
 
 	/**
-	 * Ruch zadany od u¿ytkownika
+	 * Ruch zadany od uï¿½ytkownika
 	 */
 	public void keyReleased(KeyEvent e) {
 		movePacman(e);
@@ -156,9 +153,9 @@ public class PacmanUI extends JFrame implements KeyListener {
  */
 class BoardPanel extends JPanel {
 
-	private static final int RECT_WIDTH = 20;
+	private static final int RECT_WIDTH = 22;
 	private static final int RECT_HEIGHT = RECT_WIDTH;
-	private static final int RECT_OFFSET = 21;
+	private static final int RECT_OFFSET = RECT_WIDTH + 1;
 
 	private List<BoardField>[][] board;
 	private int boardWidth;
