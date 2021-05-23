@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
  import java.awt.event.ActionListener;
 
  /**
-  * Klasa odpowiedzialna za wyswietlenie informacji koñcz¹cych grê
+  * Klasa odpowiedzialna za wyswietlenie informacji koï¿½czï¿½cych grï¿½
   *
   */
 public class GameOver extends JFrame {
@@ -32,11 +32,11 @@ public class GameOver extends JFrame {
             setLocationRelativeTo(null);
             setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
             
-            JLabel lblNewLabel_2 = new JLabel("Nalele¿y podaæ nazwê gracza:");
+            JLabel lblNewLabel_2 = new JLabel("NaleleÅ¼y podaÄ‡ nazwÄ™ gracza:");
             lblNewLabel_2.setBounds(10, 10, 300, 36);
             dialogPanel.add(lblNewLabel_2);
             
-            playerNameField = new JTextField("Przyk³adowy Nick u¿ytkownika");
+            playerNameField = new JTextField("PrzykÅ‚adowy Nick uÅ¼ytkownika");
             playerNameField.setBounds(10, 80, 300, 50);
             dialogPanel.add(playerNameField);
             
