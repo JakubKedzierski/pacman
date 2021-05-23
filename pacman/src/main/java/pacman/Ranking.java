@@ -6,8 +6,8 @@ import java.io.File;
 import java.io.FileWriter;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Scanner;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 /**
@@ -58,14 +58,16 @@ public class Ranking implements RankingInterface {
 	 */
 	private void sortRanking() {
 
-		for (int i = 0; i < 9 && i < rankList.size() - 1; i++) {
-			for (int j = 0; j <= i; j++) {
+		for (int i = 0; i < rankList.size() -1; i++) {
+			for (int j = 0; j < rankList.size() -1; j++) {
 
 				if (rankList.get(j + 1).points > rankList.get(j).points) {
 
-					RankField tmpRankField = rankList.get(j);
+                                    Collections.swap(rankList, j, j+1);
+                                    
+					/*RankField tmpRankField = rankList.get(j);
 					rankList.set(j, rankList.get(j + 1));
-					rankList.set(j + 1, tmpRankField);
+					rankList.set(j + 1, tmpRankField);*/
 
 				}
 			}
@@ -96,7 +98,7 @@ public class Ranking implements RankingInterface {
 			int i = 10;
 			for (RankField rankfield : rankList) {
 
-				if (i < 0)
+				if (i <= 0)
 					break;
 				writer.write(rankfield.toString());
 				i--;
