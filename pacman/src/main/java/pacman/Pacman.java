@@ -14,7 +14,7 @@ import lombok.Getter;
  * Glowna klasa odpowiedzialna za przebieg gry
  *
  */
-public final class Pacman implements PacmanView {
+public class Pacman implements PacmanView {
 	@Getter
 	private volatile List<BoardField>[][] board = null;
 	@Getter
@@ -29,26 +29,23 @@ public final class Pacman implements PacmanView {
 
 	public Pacman() {
 		
-                resetBoard();
-            
-		sprites = new ArrayList<Sprite>();
-		this.player = new Player(BoardFactory.playerDefaultPosition[0],BoardFactory.playerDefaultPosition[1],board,this);
-		sprites.add(this.player);
-		sprites.add(new Pinky(BoardFactory.pinkyDefaultPosition[0],BoardFactory.pinkyDefaultPosition[1],board,this,player));
-		sprites.add(new Clyde(BoardFactory.clydeDefaultPosition[0],BoardFactory.clydeDefaultPosition[1],board,this));
-		Blinky blinky = new Blinky(BoardFactory.blinkyDefaultPosition[0],BoardFactory.blinkyDefaultPosition[1],board,player,this);
-		sprites.add(blinky);
-		sprites.add(new Inky(BoardFactory.inkyDefaultPosition[0],BoardFactory.inkyDefaultPosition[1],board,this,blinky));
-
+                sprites = new ArrayList<Sprite>();
+                
+                Random rand = new Random();
+                int boardChoice = rand.nextInt(3);
+                System.out.println(boardChoice);
+                board = BoardFactory.createBoard(boardChoice);
+                BoardFactory.setDefaultPosition(board);
+                
+                this.player = new Player(BoardFactory.playerDefaultPosition[0],BoardFactory.playerDefaultPosition[1],board,this);
+                sprites.add(this.player);
+                sprites.add(new Pinky(BoardFactory.pinkyDefaultPosition[0],BoardFactory.pinkyDefaultPosition[1],board,this,player));
+                sprites.add(new Clyde(BoardFactory.clydeDefaultPosition[0],BoardFactory.clydeDefaultPosition[1],board,this));
+                Blinky blinky = new Blinky(BoardFactory.blinkyDefaultPosition[0],BoardFactory.blinkyDefaultPosition[1],board,player,this);
+                sprites.add(blinky);
+                sprites.add(new Inky(BoardFactory.inkyDefaultPosition[0],BoardFactory.inkyDefaultPosition[1],board,this,blinky));
 	}
         
-        public void resetBoard() {
-            Random rand = new Random();
-            int boardChoice = rand.nextInt(3);
-            System.out.println(boardChoice);
-            board = BoardFactory.createBoard(boardChoice);
-            BoardFactory.setDefaultPosition(board);
-        }
 	
 	/**
 	 * Rozpoczecie gry - start glownej petli

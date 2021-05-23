@@ -27,6 +27,8 @@ public class PacmanUI extends JFrame implements KeyListener {
 	private JLabel lblpoints = null;
 	private JTable rankingTable = null;
 
+        private boolean over = false;
+        
 	private Timer timer;
 	private final int INITIAL_DELAY = 10;
 	private final int PERIOD_INTERVAL = 10;
@@ -75,7 +77,7 @@ public class PacmanUI extends JFrame implements KeyListener {
 	 */
 	private class gameLoop extends TimerTask {
             
-            private boolean over = false;
+            
             
 		@Override
 		public void run() {
@@ -83,29 +85,37 @@ public class PacmanUI extends JFrame implements KeyListener {
                     boardPanel.repaint();
                     lblpoints.setText("Życia: " + String.valueOf(game.getPlayer().lives) + ",  Punkty: " + String.valueOf(game.getPlayer().getPoints()));
 
-                    if (game.getPlayer().getLives() < 1 && !over) gameOverDetected();
+                    if (game.getPlayer().getLives() < 1) over = true;
 		}
-                
-                private void gameOverDetected() {
-                    
-                    over = true;
-                    GameOver gameOver = new GameOver(game.getPlayer().getPoints(), ranking);
-                    while(gameOver.waitForClose) {
-                        game.restartGame();
-                    }
-                    
-                    over = false;
-                    game.getPlayer().setVals(3, 0);
-                }
+
 	}
 
 	public static void main(String[] args) {
 
-            Pacman pacman = new Pacman();
-            PacmanUI gameUI = new PacmanUI(pacman);
-            pacman.play();
+            while(true) {
+                Pacman pacman = new Pacman();
+                PacmanUI gameUI = new PacmanUI(pacman);
+                pacman.play();
+                
+                while(!gameUI.over) { }
+                gameUI.gameOverDetected();
+                
+                pacman = null;
+                gameUI = null;
+            }
+
 	}
 	
+        private void gameOverDetected() {
+                    
+            GameOver gameOver = new GameOver(game.getPlayer().getPoints(), ranking);
+            while(gameOver.waitForClose) {
+                game.restartGame();
+            }
+            dispose();
+            over = false;
+        }
+        
 	/**
 	 * Ruch zadany od u�ytkownika
 	 */
@@ -164,7 +174,7 @@ class BoardPanel extends JPanel {
 	private static final int RECT_HEIGHT = RECT_WIDTH;
 	private static final int RECT_OFFSET = RECT_WIDTH + 1;
 
-	private List<BoardField>[][] board;
+	List<BoardField>[][] board;
 	private int boardWidth;
 	private int boardHeight;
 
