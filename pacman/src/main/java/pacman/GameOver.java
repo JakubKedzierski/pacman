@@ -28,7 +28,7 @@ public class GameOver extends JFrame {
             super("Pacman");
             
             setTitle("Koniec gry - " + String.valueOf(points) + "pkt.");
-            setSize(320, 240);
+            setSize(320, 140);
             setLocationRelativeTo(null);
             setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
             
