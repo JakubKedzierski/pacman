@@ -70,7 +70,8 @@ public class Player extends Sprite {
 		}
 
 		move(direction, BoardField.Player);
-
+                
+                points += 1;
 		if (board[position_x][position_y].contains(BoardField.Food)) {
 			points += 10;
 			board[position_x][position_y].remove(BoardField.Food);
