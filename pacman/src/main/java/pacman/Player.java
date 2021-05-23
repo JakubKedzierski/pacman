@@ -22,7 +22,7 @@ public class Player extends Sprite {
 	private Move direction = Move.Stop;
 	private Move previousMove = Move.Stop;
 	@Getter
-	int lives = 3;
+	int lives = 1;
 	
 	
 
@@ -30,16 +30,6 @@ public class Player extends Sprite {
 		super(position_x, position_y, board, pacman);
 		sprite = BoardField.Player;
 	}
-	
-        /**
-	 * Prosta metoda ustawiająca życie oraz punkty gracza
-	 * @param lives - ilość żyć,
-         * @param points - ilość punktów
-	 */
-        public void setVals(int lives, int points) {
-            this.points = points;
-            this.lives = lives;
-        }
         
 	/**
 	 * Ustawienie ruchu oraz poprzedniego ruchu tak aby uczucie poruszania sie po planszy bylo bardziej przyjazne dla uzytkownika

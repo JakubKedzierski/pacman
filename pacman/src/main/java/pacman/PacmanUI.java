@@ -27,7 +27,7 @@ public class PacmanUI extends JFrame implements KeyListener {
 	private JLabel lblpoints = null;
 	private JTable rankingTable = null;
 
-        private boolean over = false;
+        private volatile boolean over = false;
         
 	private Timer timer;
 	private final int INITIAL_DELAY = 10;
@@ -93,27 +93,24 @@ public class PacmanUI extends JFrame implements KeyListener {
 	public static void main(String[] args) {
 
             while(true) {
+                
                 Pacman pacman = new Pacman();
                 PacmanUI gameUI = new PacmanUI(pacman);
+                
                 pacman.play();
-                
-                while(!gameUI.over) { }
-                gameUI.gameOverDetected();
-                
-                pacman = null;
-                gameUI = null;
+                gameUI.waitForEnd();
             }
-
 	}
 	
-        private void gameOverDetected() {
-                    
+        private void waitForEnd() {
+            
+            while(!over) { }
             GameOver gameOver = new GameOver(game.getPlayer().getPoints(), ranking);
+            
             while(gameOver.waitForClose) {
                 game.restartGame();
             }
             dispose();
-            over = false;
         }
         
 	/**
